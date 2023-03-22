@@ -1,0 +1,23 @@
+.auth-card{
+    background-color: rgb(251, 251, 255);
+    width: 400px;
+    margin-top: 150px;
+    border-radius: 3px;
+    border: .2px solid gray;
+    padding: 40px;
+    text-align: center;
+    
+}
+.auth-form{
+    display: flex;
+    justify-content: center;
+}
+.auth-title{
+    text-align: center;
+    color: white;
+}
+.auth-page{
+    background: linear-gradient(to left, rgb(255, 119, 0),rgb(255, 150, 13) , rgb(255, 184, 91) );
+    padding: 100px;
+    padding-bottom: 174px;
+}

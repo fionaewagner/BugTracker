@@ -1,0 +1,85 @@
+.sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    padding: 10px;
+    background: #ffffff;
+    color: rgb(129, 129, 129);
+    margin-left: -250px;
+    transition: all 0.5s;
+    box-shadow: 1px 1px 5px rgb(235, 235, 235);
+    overflow: auto !important;
+    position: fixed !important;
+    z-index: 1;
+    height: 100vh;
+   
+  }
+  .toggle-button{
+    z-index: 3;
+    margin-top:96vh;
+    height: 5%;
+    background-color: rgb(222, 221, 221);
+    color: black;
+    position: fixed;
+    
+  }
+  
+  .sidebar.is-open {
+    margin-left: 0;
+    transition: 0.5s;
+  }
+  
+  .sidebar-header {
+    background: #ffffff;
+  }
+  
+  .sidebar-header h3 {
+    color: rgb(148, 148, 148);
+    padding: 1em;
+  }
+  
+  .sidebar ul p {
+    color: rgb(163, 163, 163);
+    padding: 10px;
+  }
+  
+  .menu-open {
+    background: #ffffff;
+  }
+  
+  .nav-item:hover {
+    color: #afafaf;
+    background: #fff;
+  }
+  
+  .items-menu {
+    color: #fff;
+    background: #6d7fcc;
+  }
+  
+  li a.dropdown-toggle::after {
+    display: inline-flex;
+    position: relative;
+    left: 60%;
+    top: 10%;
+  }
+  
+  .sidebar-header > span {
+    position: relative;
+    float: right;
+    margin: 0.5em;
+    font-size: 2rem;
+    cursor: pointer;
+    display: none;
+  }
+  .link-name{
+    color: gray !important
+  }
+  .link-name:hover{
+    background-color: rgb(201, 201, 201) 
+  }
+  .height-up{
+    height: 100%;
+  }
+  .hidden{
+    display: none;
+  }

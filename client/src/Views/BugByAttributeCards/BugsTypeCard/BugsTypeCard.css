@@ -1,0 +1,26 @@
+.bugs-doughnut-card{
+    padding: 2px;
+    padding-bottom: 10px;
+    max-height: 350px;
+    background-color: rgb(255, 255, 255) !important;
+    box-shadow: 5px 5px 15px 4px  rgb(239, 239, 239);
+}
+.bugs-yum{
+    color: rgb(0, 38, 255);
+    color: rgb(0, 141, 7);
+    color: rgb(255, 145, 0);
+    color: rgb(255, 34, 0)
+}
+.bugs-doughnut{
+   padding-left: 100px;
+   padding-right: 100px;
+   padding-top: 20px;
+   padding-bottom: 30px;
+}
+.doughnut-row{
+    background-color: white;
+    margin-left: 18px;
+    margin-right: 18px;
+    padding: 5px;
+    border-bottom: 2px solid rgb(240, 240, 240);
+}

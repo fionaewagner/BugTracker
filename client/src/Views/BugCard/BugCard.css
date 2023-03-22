@@ -1,0 +1,24 @@
+.bug-card{
+   
+}
+.card-row{
+    margin-top: 20px !important; 
+    border-bottom: 1px solid rgba(200, 200, 200, 0.301);  
+}
+.card-body{
+    margin-left:40px;
+    margin-right:40px; 
+}
+.card-title{
+    padding-top:12px;
+    padding-bottom:1px;
+    padding-left:10px;
+    color:rgb(252, 244, 233);
+    box-shadow: 10px 10px 20px #e0e0e0,
+    -10px -10px 20px white;
+   background: linear-gradient(to left, rgb(255, 119, 0),rgb(255, 150, 13) , rgb(255, 161, 38) )
+}
+.title{
+    font-weight: 500;
+}
+

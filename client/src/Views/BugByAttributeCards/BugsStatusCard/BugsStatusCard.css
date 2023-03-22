@@ -1,0 +1,13 @@
+.bugs-status-card{
+    padding: 2px;
+    background-color: rgb(255, 255, 255) !important;
+    
+}
+.bugs-status{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+
+    
+}
