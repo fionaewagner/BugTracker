@@ -36,14 +36,15 @@ const SideBar = ({ isOpen, toggle }) => {
   <>
   
   <Button  className={cx('toggle-button', {
-   'hidden': location.pathname ==='/' || location.pathname==='/login',
+   'hidden': location.pathname ==='/' || location.pathname==='/register',
    
 })}  onClick={toggle} >
         <FontAwesomeIcon icon={faChartBar}  />
   </Button>
 
 
-  <div className={classNames("sidebar",{ "is-open": isOpen })} sticky='top'>
+  <div className={classNames("sidebar",{ "is-open": isOpen } )} sticky='top'>
+    <div className={location.pathname ==='/' || location.pathname==='/register' ? 'hidden' : 'yay'}>
     <div className="sidebar-header">
        <NavbarBrand  href="/" >
         <img src={Logo} width='150' height='150'/>
@@ -83,6 +84,7 @@ const SideBar = ({ isOpen, toggle }) => {
         </NavItem>
         <Button onClick={handleLogOff}>Log Off</Button>
       </Nav>
+    </div>
     </div>
   </div>
   </>

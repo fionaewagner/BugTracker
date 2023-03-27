@@ -16,7 +16,7 @@ import { getBugs } from "./actions/bugs";
 
 
 const App = () => {
-  const [sidebarIsOpen, setSidebarOpen] = useState(true);
+  const [sidebarIsOpen, setSidebarOpen] = useState(false);
   const toggleSidebar = () => setSidebarOpen(!sidebarIsOpen);
   const signedIn= useSelector(selectAuth);
   const token = sessionStorage.getItem("authToken")

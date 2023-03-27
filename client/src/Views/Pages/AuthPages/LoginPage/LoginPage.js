@@ -1,4 +1,4 @@
-import { Button, Card, Col, Row } from "reactstrap"
+import { Button, Card, Col, Container, Row } from "reactstrap"
 import {
   
     faMessage,
@@ -33,65 +33,68 @@ const LoginPage=()=>{
 
 }
     return(
-        <div className="auth-page">
-        <div className='auth-title'>
-            <h1>Bug Tracker</h1>
-            <p>Login</p>
-        </div>
-        <Row>
-            <Col/>
-            <Col>
-                <div className="auth-card">
-                    <Formik
-                    initialValues={{email:'',password:'', remember:''}}
-                    onSubmit={handleLogin}> 
-                        <div className="auth-form">
-                            <Form>
-                                <Row className="mb-2">
-                                    <Col xs='6'>
-                                        <Field type='email' placeholder='Email'
-                                        name='email' id='email'/>
-                                    </Col>
-                                </Row>
-                                <Row className="mb-3">
-                                    <Col xs='6'>
-                                        <Field type='password' placeholder='Password'
-                                        name='password' id='password'/>
-                                    </Col>
-                                </Row>
-                                <Row className="mb-4">
-                                    <Col>
-                                        <Field type='checkbox' id='remember' 
-                                        name='remember' />
-                                        {"   "}Remember me
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                    <Button type="submit">Sign in</Button>
-                                    </Col>
-                                </Row>
-                                
-                            </Form>
-                        </div>
-                        
-                    </Formik>
-                
+        <Container className="auth-page">
+            <div className='auth-title'>
+                <h1 className="bug-title">Bug Tracker</h1>
+                <p>Login</p>
+            </div>
+            <Row>
+                <Col/>
+                <Col>
+                    <div className="auth-card">
+                        <Formik
+                        initialValues={{email:'',password:'', remember:''}}
+                        onSubmit={handleLogin}> 
+                            <div className="auth-form">
+                                <Form>
+                                    <Row className="mb-2">
+                                        <Col xs='6'>
+                                            <Field type='email' placeholder='Email'
+                                            name='email' id='email'/>
+                                        </Col>
+                                    </Row>
+                                    <Row className="mb-3">
+                                        <Col xs='6'>
+                                            <Field type='password' placeholder='Password'
+                                            name='password' id='password'/>
+                                        </Col>
+                                    </Row>
+                                    <Row className="mb-4">
+                                        <Col>
+                                            <Field type='checkbox' id='remember' 
+                                            name='remember' />
+                                            {"   "}Remember me
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                        <Button type="submit">Sign in</Button>
+                                        </Col>
+                                    </Row>
+                                    
+                                </Form>
+                            </div>
+                            
+                        </Formik>
+                    
 
-                </div>
-                <Row>
-                    <Col>
-                        <p>Forgot Password?</p>
-                    </Col>
-                    <Col>
-                        <Link to='/'>Create an Account</Link>
-                    </Col>
-                </Row>
-            </Col>
-            
-            <Col/>
-        </Row>    
-        </div>
+                    </div>
+                    <Row>
+                        <Col/>
+                        <Col xs='5'>
+                            <p>Forgot Password?</p>
+                        </Col>
+                        <Col xs='5'>
+                            <Link className="rmv-dec" to='/register'>Create an Account</Link>
+                        </Col>
+                        <Col/>
+                       
+                    </Row>
+                </Col>
+                
+                <Col/>
+            </Row>    
+        </Container>
     )
 }
 

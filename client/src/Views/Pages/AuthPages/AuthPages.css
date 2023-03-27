@@ -3,9 +3,10 @@
     width: 400px;
     margin-top: 150px;
     border-radius: 3px;
-    border: .2px solid gray;
+    border: 1px solid gray;
     padding: 40px;
     text-align: center;
+    
     
 }
 .auth-form{
@@ -16,8 +17,29 @@
     text-align: center;
     color: white;
 }
+.bug-title{
+    font-size: 50px;
+}
 .auth-page{
     background: linear-gradient(to left, rgb(255, 119, 0),rgb(255, 150, 13) , rgb(255, 184, 91) );
-    padding: 100px;
-    padding-bottom: 174px;
+    border-radius: 20px;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 15%;
+    padding-top: 2%;
+    
+}
+
+.rmv-dec{
+    text-decoration: none !important;
+    color: rgb(251, 251, 255);
+    font-weight: 475;
+}
+.rmv-dec:hover{
+    text-decoration: none !important;
+    color: rgb(191, 191, 191);
+}
+
+html{
+    height:  100%;
 }

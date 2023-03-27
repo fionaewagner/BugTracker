@@ -3,6 +3,7 @@ import User from '../Model/userModel.js'
 import ErrorResponse from '../utils/errResponse.js';
 import { sendEmail } from '../utils/sendEmail.js';
 import crypto from 'crypto'
+import mongoose from 'mongoose';
 
 export const getUsers = async(req, res, next)=>{
     try {
@@ -113,6 +114,21 @@ export const forgotPassword= async(req, res,next)=>{
     } catch (error) {
          next(error)
     }
+
+}
+
+export const deleteUser = async (req, res, next) => {
+    const { _id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send(`No user with id: ${_id}`);
+    try{
+        await User.findByIdAndRemove(_id);
+
+    res.json({ message: "User deleted successfully." });
+    }catch(err){
+        console.log(err)
+    }
+    
 
 }
 

@@ -1,5 +1,5 @@
 import express  from "express";
-import { register, login, forgotPassword, getUsers } from "../Controller/auth.js";
+import { register, login, forgotPassword, getUsers, deleteUser } from "../Controller/auth.js";
 
 export const authRouter = express.Router()
 
@@ -7,6 +7,7 @@ authRouter.route("/register").post(register);
 authRouter.route("/login").post(login);
 authRouter.route("/forgotpassword").post(forgotPassword);
 authRouter.route("/getusers").post(getUsers);
+authRouter.delete('/:_id',deleteUser);
 
 
 

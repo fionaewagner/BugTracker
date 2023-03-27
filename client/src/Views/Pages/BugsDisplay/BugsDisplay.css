@@ -19,9 +19,14 @@
 }
 .create-btn{
     background-color: rgb(66, 188, 236) !important;
-   
     
 }
+
 .create-btn:hover{
     background-color: rgb(74, 204, 255) !important ;
+}
+
+.add-btn{
+    font-size: large;
+    
 }

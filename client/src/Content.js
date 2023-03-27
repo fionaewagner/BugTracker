@@ -24,8 +24,8 @@ const Content = ({ sidebarIsOpen, toggleSidebar, setSidebarOpen}) => {
     className={classNames("content", { "is-open": sidebarIsOpen })}
   >
     <Routes>
-      <Route exact path="/" element={<RegisterPage/>} />
-      <Route exact path="/login" element={<LoginPage/>} />
+      <Route exact path="/" element={<LoginPage/>} />
+      <Route exact path="/register" element={<RegisterPage/>} />
       <Route exact path="/dashboard" element={token ? <Dashboard sidebarIsOpen={sidebarIsOpen}/> : <Navigate to="/" />} />
       <Route exact path="/bugs" element={token ? <BugsDisplay/> : <Navigate to="/" />} />
       <Route exact path="/Pages" element={() => "Pages"} />

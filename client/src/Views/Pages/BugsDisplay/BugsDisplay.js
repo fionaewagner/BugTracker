@@ -1,10 +1,16 @@
 import './BugsDisplay.css'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from 'react-redux'
 import { selectAllBugs } from '../../../Controllers/Redux/bugsSlice'
 import { Card, Col, Row, Button } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import Header from '../../Header/Header'
 import { useEffect } from 'react'
+import {
+  
+    faPlus
+    
+  } from "@fortawesome/free-solid-svg-icons";
 
 const BugsDisplay=()=>{
     
@@ -20,13 +26,12 @@ const BugsDisplay=()=>{
                     <h3>Your Bugs</h3>
                 </Col>
             </Row>
-            <Row>
-                <Col xs='1'>
-                </Col>
-                <Col>
+            <Row className='mb-4'>
+                <Col xs='1'/>
+                <Col xs='6'>
                    <Link to='/create' className='create-btn btn'>
-                    Create new bug
-                   </Link>
+                        Create New Bug
+                   </Link> 
                 </Col>
             </Row>
             <div className='bugs'>

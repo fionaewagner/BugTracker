@@ -93,10 +93,11 @@ const RegisterPage=()=>{
 
                 </div>
                 <Row>
-                    <Col xs='3'/>
-                        <Col xs='8'>
-                            <Link to='/login'>Log in</Link>
+                    <Col/>
+                        <Col xs='2'>
+                            <Link to='/' className="rmv-dec">Log in</Link>
                         </Col>
+                    <Col/>
                 </Row>
             </Col>
             
