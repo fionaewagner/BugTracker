@@ -9,6 +9,7 @@ import BugView from "./Views/Pages/BugView/BugView";
 import CreateBug from "./Views/Pages/CreateBug/CreateBug";
 import RegisterPage from "./Views/Pages/AuthPages/RegisterPage/RegisterPage";
 import LoginPage from "./Views/Pages/AuthPages/LoginPage/LoginPage";
+import MyGroup from "./Views/Pages/MyGroup/MyGroup";
 
 
 const Content = ({ sidebarIsOpen, toggleSidebar, setSidebarOpen}) => {
@@ -28,6 +29,7 @@ const Content = ({ sidebarIsOpen, toggleSidebar, setSidebarOpen}) => {
       <Route exact path="/register" element={<RegisterPage/>} />
       <Route exact path="/dashboard" element={token ? <Dashboard sidebarIsOpen={sidebarIsOpen}/> : <Navigate to="/" />} />
       <Route exact path="/bugs" element={token ? <BugsDisplay sidebarIsOpen={sidebarIsOpen}/> : <Navigate to="/" />} />
+      <Route exact path='/groups' element={token ? <MyGroup sidebarIsOpen={sidebarIsOpen}/> : <Navigate to="/" />}/>
       <Route exact path="/Pages" element={() => "Pages"} />
       <Route exact path="/user" element={token ? <UserSettings/> :<Navigate to="/" />} />
       <Route exact path="/create" element={token ? <CreateBug/> : <Navigate to="/" />} />

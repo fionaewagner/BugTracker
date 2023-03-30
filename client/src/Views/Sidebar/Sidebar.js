@@ -8,6 +8,10 @@ import {
  
   
 } from "@fortawesome/free-regular-svg-icons";
+import{
+  faGroupArrowsRotate
+
+}from "@fortawesome/free-solid-svg-icons"
 import { NavItem, NavLink, Nav, NavbarBrand, Button } from "reactstrap";
 import classNames from "classnames";
 import { Link, useLocation, useNavigate} from "react-router-dom";
@@ -69,6 +73,12 @@ const SideBar = ({ isOpen, toggle }) => {
           <NavLink tag={Link} to={"/bugs"} className='link-name'>
             <FontAwesomeIcon icon={faRectangleList} className="mr-2" />
             {'  '}Bugs
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink tag={Link} to={"/groups"} className='link-name'>
+            <FontAwesomeIcon icon={faGroupArrowsRotate} className="mr-2" />
+            {'  '}My Group
           </NavLink>
         </NavItem>
         <Button onClick={handleLogOff}>Log Off</Button>

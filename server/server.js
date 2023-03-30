@@ -9,6 +9,7 @@ import bodyParser from 'body-parser';
 import { authRouter } from './routes/auth.js';
 import { privRouter } from './routes/private.js';
 import { bugsRouter } from './routes/bugs.js';
+import { groupRouter } from './routes/group.js';
 
 //const authRoute = require('./Controller/routes/auth.js')
 
@@ -33,6 +34,7 @@ app.use(cors());
 app.use('/auth', authRouter)
 app.use('/bugs', bugsRouter)
 app.use('/private', privRouter)
+app.use('/group', groupRouter)
 
 //ERROR HANDLER MUST BE LAsT
 app.use(errorHandler)
