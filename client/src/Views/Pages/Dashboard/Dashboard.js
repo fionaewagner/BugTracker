@@ -15,19 +15,23 @@ const Dashboard = ({sidebarIsOpen})=>{
    
     return(
         <div>
-            <Header name={"Dashbaord"}/>
-            <Row>
+            <Header name={"Dashboard"} sidebarIsOpen={sidebarIsOpen}/>
+            <Row className="mb-3">
+                <Col/>
                 <Col xs='10' md='5' >
                     <TotalBugsCard/>
                 </Col>
-                <Col className="dashboard-col" xs='10' md='5'>
+                <Col xs='10' md='5'>
                     <BugsTypeCard/>
                 </Col>
+                <Col/>
             </Row>
             <Row>
+                <Col/>
                 <Col xs='10' md='5'>
                     <BugsStatusCard/>
                 </Col>
+                <Col/>
                 
             </Row>
         </div>

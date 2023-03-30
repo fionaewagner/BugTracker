@@ -12,12 +12,12 @@ import {
     
   } from "@fortawesome/free-solid-svg-icons";
 
-const BugsDisplay=()=>{
+const BugsDisplay=({sidebarIsOpen})=>{
     
     const bugs = useSelector(selectAllBugs)
     return(
         <div className='bugs-display'>
-            <Header name={"Bugs"}/>
+            <Header name={"Bugs"} sidebarIsOpen={sidebarIsOpen}/>
             <Row>
                 <Col xs='11'>
             <Card className='bugs-card'>

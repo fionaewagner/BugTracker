@@ -1,0 +1,13 @@
+.total-bugs{
+    height: 100%;
+}
+.numberCircle {
+    border-radius: 50%;
+    width: 190px;
+    height: 190px;
+    padding: 15%;
+    background: #fff;
+    border: 40px solid rgb(25, 59, 252);
+    color: #222222;
+    text-align: center;
+}

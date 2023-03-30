@@ -4,6 +4,8 @@
     max-height: 350px;
     background-color: rgb(255, 255, 255) !important;
     box-shadow: 5px 5px 15px 4px  rgb(239, 239, 239);
+    align-items: center;
+    overflow: hidden;
 }
 .bugs-yum{
     color: rgb(0, 38, 255);
@@ -24,18 +26,6 @@
     padding: 5px;
     border-bottom: 2px solid rgb(240, 240, 240);
 }
-
-.numberCircle {
-    border-radius: 50%;
-    width: 105px;
-    height: 105px;
-    padding: 12px;
-    
-
-    background: #fff;
-    border: 22px solid #666;
-    color: #666;
-    text-align: center;
-
-    font: 32px Arial, sans-serif;
+.do-chart{
+    max-height: 250px;
 }

@@ -45,11 +45,11 @@ const data = {
         <Card className="bugs-doughnut-card" >
           <Row>
             <Col className="doughnut-row">
-                <h5>Tickets by Priority</h5>
+                <h5>Bugs by Priority</h5>
             </Col>
             </Row>
             <div className="bugs-doughnut">
-                <Doughnut data={data}/>
+                <Doughnut className="do-chart" data={data}/>
             </div>
             
         </Card>

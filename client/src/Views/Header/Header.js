@@ -1,5 +1,5 @@
 import './Header.css'
-const Header =({name})=>{
+const Header =({name, sidebarIsOpen})=>{
     return(
         <div className="dash-header">
                 <h3 className="header-title">

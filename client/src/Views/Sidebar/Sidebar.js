@@ -21,6 +21,7 @@ import cx from 'classnames';
 
 const SideBar = ({ isOpen, toggle }) => {
   const navigate = useNavigate()
+  
 
   const handleLogOff=()=>{
     sessionStorage.clear();
@@ -68,18 +69,6 @@ const SideBar = ({ isOpen, toggle }) => {
           <NavLink tag={Link} to={"/bugs"} className='link-name'>
             <FontAwesomeIcon icon={faRectangleList} className="mr-2" />
             {'  '}Bugs
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink tag={Link} to={"/user"} className='link-name'>
-            <FontAwesomeIcon icon={faAddressBook} className="mr-2" />
-            {"  "}User Settings
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink tag={Link} to={"/create"} className='link-name'>
-            <FontAwesomeIcon icon={faAddressBook} className="mr-2" />
-            Contact
           </NavLink>
         </NavItem>
         <Button onClick={handleLogOff}>Log Off</Button>

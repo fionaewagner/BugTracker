@@ -27,7 +27,7 @@ const Content = ({ sidebarIsOpen, toggleSidebar, setSidebarOpen}) => {
       <Route exact path="/" element={<LoginPage/>} />
       <Route exact path="/register" element={<RegisterPage/>} />
       <Route exact path="/dashboard" element={token ? <Dashboard sidebarIsOpen={sidebarIsOpen}/> : <Navigate to="/" />} />
-      <Route exact path="/bugs" element={token ? <BugsDisplay/> : <Navigate to="/" />} />
+      <Route exact path="/bugs" element={token ? <BugsDisplay sidebarIsOpen={sidebarIsOpen}/> : <Navigate to="/" />} />
       <Route exact path="/Pages" element={() => "Pages"} />
       <Route exact path="/user" element={token ? <UserSettings/> :<Navigate to="/" />} />
       <Route exact path="/create" element={token ? <CreateBug/> : <Navigate to="/" />} />
