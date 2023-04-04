@@ -33,13 +33,16 @@ const MyGroup =({sidebarIsOpen})=>{
                             </Row>
 
                                 <Row className="text-center"> 
-                                    <Col >
-                                        <p >Group Name</p>
+                                    <Col/>
+                                    <Col xs='5'>
+                                        <p className="add-underline pb-2">Group Name</p>
                                     </Col>
+                                    <Col/>
                                 </Row>
                                
-                                <Row className="mb-2 profile-row group-input-row"> 
-                                    <Col xs='12' sm='4'>
+                                <Row className="group-input-row"> 
+                                    
+                                    <Col>
                                         <FontAwesomeIcon className="group-input-icon" icon={faUsers}  />
                                        <Field className='yum' type='text' placeholder='Name'
                                         name='name' id='name'/>
@@ -47,17 +50,20 @@ const MyGroup =({sidebarIsOpen})=>{
                                             {(msg)=><p className='text-danger errm'>{msg}</p>}
                                         </ErrorMessage>
                                     </Col>
+                                   
                                 </Row>
 
                                 <Row className="text-center"> 
-                                    
-                                    <Col>
-                                        <p className="color-tan add-underline">Group Key</p>
+                                    <Col/>
+                                    <Col xs='4'>
+                                        <p className="add-underline pb-2">Group Key</p>
                                     </Col>
+                                    <Col/>
                                     
                                 </Row>
                                 <Row className="mb-2 profile-row group-input-row"> 
-                                    <Col xs='12' sm='4'>
+                                   
+                                    <Col>
                                         
                                         <FontAwesomeIcon className="group-input-icon" icon={faKey}  />
                                        <Field className='yum' type='text' placeholder='Key'
@@ -66,6 +72,7 @@ const MyGroup =({sidebarIsOpen})=>{
                                             {(msg)=><p className='text-danger errm'>{msg}</p>}
                                         </ErrorMessage>
                                     </Col>
+                                    
                                 </Row>
                                 
                                 

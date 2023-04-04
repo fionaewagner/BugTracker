@@ -64,4 +64,8 @@
     transition: .4s;
     transform: translate(-120px,0px);
 }
+
+.add-underline{
+  border-bottom: 1px solid gray;
+}
   
