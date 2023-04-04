@@ -1,0 +1,31 @@
+.group-card-title{
+    color:rgb(252, 244, 233);
+    box-shadow: 10px 10px 20px #e0e0e0,
+    -10px -10px 20px white;
+   background: linear-gradient(to left, rgb(255, 119, 0),rgb(255, 150, 13) , rgb(255, 161, 38) );
+   padding: 10px;
+}
+
+.group-card-div{
+    padding: 1%;
+    margin: 1%;
+}
+
+.group-input-row{
+    align-items: center;
+    background-color: white;
+    
+}
+.group-input-icon{
+    margin-bottom: -34px;  
+    margin-right: 55px;
+    padding: 7px;
+    z-index: 10;
+    position: relative;
+    color: rgb(120, 120, 120);
+}
+
+input.yum{
+    padding-left: 30px ;
+}
+
