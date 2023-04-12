@@ -50,7 +50,7 @@ export const createGroup = async (req, res, next) => {
         if(!group){
            return next(new ErrorResponse("Invalid Credentials", 401))
         }
-        res.status(200).json(group)
+        res.json(group)
     }
     catch(error){
         res.status(500).json({

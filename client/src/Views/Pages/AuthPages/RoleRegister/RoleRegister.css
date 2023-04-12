@@ -1,0 +1,94 @@
+.role-sel-card{
+    border-right: 1px solid rgb(224, 224, 224);
+    
+}
+.role-txt-card{
+   
+
+}
+.fuk{
+    background-color: #000000;
+}
+
+.role-page{
+    background: linear-gradient(to left, rgb(255, 119, 0),rgb(255, 150, 13) , rgb(255, 184, 91) );
+    padding: 5% 5% 2% 5%;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.form-control {
+    font-family: system-ui, sans-serif;
+    font-weight: bold;
+    line-height: .8;
+    display: inline-grid;
+    grid-template-columns: .8em auto;
+    border: none;
+    gap: 0.5em;
+    background-color: rgba(0, 0, 255, 0);
+    
+  }
+  .form-control:hover{
+      color:#000000;
+  }
+  
+  .form-control + .form-control {
+    margin-top: 1em;
+  }
+  
+  .form-control:focus-within {
+    color: var(--form-control-color);
+  }
+  
+  input[type="radio"] {
+    -webkit-appearance: none;
+   
+    appearance: none;
+   
+    background-color: var(--form-background);
+    font: inherit;
+    color: currentColor;
+    width: 1em;
+    height: 1em;
+    border: 0.15em solid currentColor;
+    border-radius: 50%;
+    transform: translateY(-0.075em);
+  
+    display: inline-grid;
+    place-content: center;
+  }
+  
+  input[type="radio"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--form-control-color);
+  
+    background-color: CanvasText;
+  }
+  
+  input[type="radio"]:hover {
+      color:#303030;
+      
+    }
+  
+  input[type="radio"]:hover:checked::before {
+      transform: scale(.9);
+      background-color:#000000;
+  }
+  
+  input[type="radio"]:checked::before {
+    transform: scale(.9);
+    background-color:rgb(0, 0, 0);
+  }
+
+  .move-o{
+    margin-left: 21% !important;
+    background-color: rgb(154, 148, 148);
+    box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  

@@ -3,10 +3,15 @@ import {
   
     faMessage,
     faAddressBook,
-    faRectangleList
-   
+    faRectangleList,
+    faQuestionCircle
     
   } from "@fortawesome/free-regular-svg-icons";
+  import{
+    faKey,
+    faUsers
+  
+  }from "@fortawesome/free-solid-svg-icons"
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
 import { registerUser } from "../../../../Controllers/Redux/authSlice";
@@ -15,9 +20,7 @@ import { Link, useNavigate } from "react-router-dom";
 import LoginPage from "../LoginPage/LoginPage";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { useState } from "react";
-
-
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 const RegisterPage=()=>{
@@ -41,68 +44,120 @@ const RegisterPage=()=>{
 }
     return(
         <div className="auth-page">
-        <div className='auth-title'>
-            <h1>Bug Tracker</h1>
-            <p>Register</p>
-        </div>
+            <div className='auth-title mt-3'>
+                <h1>Bug Tracker</h1>
+                <p>Register</p>
+            </div>
         <Row>
             <Col/>
             <Col>
-                <div className="auth-card">
+                <div className="reg-card">
+                    
                     <Formik
                     initialValues={{email:'',username:'',password:'', remember:''}}
                     onSubmit={handleRegister}> 
                         <div className="auth-form">
                             <Form>
+                                <Col className='group-card-title mb-2'>
+                                    <h3>Your Information</h3>
+                                </Col>
+                                <Row className="label-row-user"> 
+                                    <Col>
+                                        <p>Email</p>
+                                    </Col>
+                                    <Col >
+                                        <p>Username</p>
+                                    </Col>
+                                </Row>
                                 <Row className="mb-2">
                                     <Col xs='6'>
                                         <Field type='email' placeholder='Email'
                                         name='email' id='email'/>
                                     </Col>
-                                </Row>
-                                <Row className="mb-2">
                                     <Col xs='6'>
                                         <Field type='text' placeholder='Username'
                                         name='username' id='username'/>
                                     </Col>
                                 </Row>
-                                <Row className="mb-3">
+    
+                                <Row className="label-row-user"> 
+                                    
+                                    <Col >
+                                        <p>Password</p>
+                                    </Col>
+                                </Row>
+                                <Row>
                                     <Col xs='6'>
                                         <Field type='password' placeholder='Password'
                                         name='password' id='password'/>
                                     </Col>
                                 </Row>
-                                <Row className="mb-4">
+                    
+                            <Row className="mt-4">
+                                <Col className='group-card-title mb-4'>
+                                    <h3>Group Information</h3>
+                                </Col>
+                            </Row>
+
+                            <Row className="label-row">  
                                     <Col>
-                                        <Field type='checkbox' id='remember' 
-                                        name='remember' />
-                                        {"   "}Remember me
+                                        <p >Group Name</p>
+                                    </Col>
+                                    <Col >
+                                        <p >Group Key</p>
                                     </Col>
                                 </Row>
-                                <Row>
+                               
+                                <Row className="group-input-row"> 
+                                    
                                     <Col>
-                                    <Button type="submit">Create New Account</Button>
+                                        <FontAwesomeIcon className="group-input-icon" icon={faUsers}  />
+                                       <Field id='name' className='yum' type='text' placeholder='Name'
+                                        name='name' id='name'/>
+                                         <ErrorMessage name="name">
+                                            {(msg)=><p className='text-danger errm'>{msg}</p>}
+                                        </ErrorMessage>
                                     </Col>
+
+                                    <Col>
+                                        <FontAwesomeIcon className="group-input-icon" icon={faKey}  />
+                                       <Field className='yum' type='text' placeholder='Key'
+                                        name='key' id='key'/>
+                                         <ErrorMessage name="key">
+                                            {(msg)=><p className='text-danger errm'>{msg}</p>}
+                                        </ErrorMessage>
+                                    </Col>
+                                   
                                 </Row>
+
                                 
-                            </Form>
-                        </div>
+                            <Row>
+                                <Col/>
+                                <Col>
+                                    <Button type="submit">Create New Account</Button>
+                                </Col>
+                                <Col/>
+                            </Row>
+                         </Form>
+                         </div>       
+                                
                         
+                     
                     </Formik>
                 
 
                 </div>
-                <Row>
-                    <Col/>
-                        <Col xs='2'>
+                <Row className="text-center">
+                    
+                        <Col >
                             <Link to='/' className="rmv-dec">Log in</Link>
                         </Col>
-                    <Col/>
+                   
                 </Row>
             </Col>
             
             <Col/>
-        </Row>    
+        </Row>   
         </div>
     )
 }

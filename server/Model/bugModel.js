@@ -9,7 +9,8 @@ const bugSchema=mongoose.Schema({
     creator: String,
     assigned: String,
     status: String,
-    datePosted:Date
+    datePosted:Date,
+    group: { type: mongoose.Schema.Types.ObjectId, ref: 'Group' }
 })
 
 const Bug = mongoose.model('Bug', bugSchema);

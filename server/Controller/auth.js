@@ -167,8 +167,31 @@ export const resetPassword= async(req, res, next)=>{
 
 const sendToken=(user, statusCode,res)=>{
     const token = user.getSignedToken();
-    res.status(statusCode).json({success:true,token,username: user.username})
+    res.status(statusCode).json({success:true,token, _id: user._id, username: user.username})
 
 }
+
+export const updateUser = async (req, res) => {
+    const { _id } = req.params;
+    const {group} = req.body;
+    
+    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send(`No user with id: ${_id}`);
+  
+    const updatedUser = {group};
+    console.log("this group is: " + req.body)
+
+        try{
+            await User.findByIdAndUpdate(_id, updatedUser, { new: true });
+  
+            res.json(updatedUser);
+        }catch(err){
+            res.status(500).json({
+                success:false,
+                error: err.message
+            })
+        }
+  
+    
+  }
 
 

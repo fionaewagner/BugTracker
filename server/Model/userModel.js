@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema({
       required: [true, "Please add a password"],
       minlength: 6
     },
+    group: { type: mongoose.Schema.Types.ObjectId, ref: 'Group' },
     resetPasswordToken: String,
     resetPasswordExpire: Date,
   });
