@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { setName, setUser } from '../Controllers/Redux/authSlice';
+import { joinGroup } from './group';
 
 const url = 'http://localhost:5000/auth';
 
@@ -18,6 +19,48 @@ export const register=async(user, navigate, dispatch)=>{
           username,
           email,
           password,
+        },
+        config
+      );
+
+      if(data){
+      sessionStorage.setItem("authToken", data.token);
+      sessionStorage.setItem("userId", data._id)
+      navigate("../dashboard", { replace: true });
+      dispatch(setUser(email))
+      dispatch(setName(username))
+      }
+      else{
+        console.log("Invalid Credentials")
+      }   
+    } catch (error) {
+      console.log(error)  
+    }
+
+}
+
+export const userRegister=async(user, navigate, dispatch)=>{
+  const {username,email, password,group} = user;
+  let groupId;
+  try{
+    groupId = await joinGroup(group)
+  }catch(error){
+    console.log(error)
+  }
+    try {
+        const config = {
+            header: {
+              "Content-Type": "application/json",
+            },
+          };
+
+        const {data} = await axios.post( `${url}/register`,
+        {
+          username,
+          email,
+          password,
+          groupId,
+          admin: false
         },
         config
       );

@@ -22,7 +22,11 @@ const userSchema = new mongoose.Schema({
       required: [true, "Please add a password"],
       minlength: 6
     },
-    group: { type: mongoose.Schema.Types.ObjectId, ref: 'Group' },
+    groupId: { type: mongoose.Schema.Types.ObjectId, ref: 'Group' },
+    admin: {
+      type: Boolean,
+      required: [true, "Please provide role"]
+    },
     resetPasswordToken: String,
     resetPasswordExpire: Date,
   });

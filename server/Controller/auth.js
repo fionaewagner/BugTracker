@@ -20,13 +20,15 @@ export const getUsers = async(req, res, next)=>{
 export const register = async (req, res, next) => {
     console.log('registering')
     console.log(req.body);
-    const { username, email, password } = req.body;
+    const { username, email, password, groupId, admin } = req.body;
   
     try {
       const user = await User.create({
         username,
         email,
         password,
+        groupId,
+        admin
       });
   
       sendToken(user, 200, res);

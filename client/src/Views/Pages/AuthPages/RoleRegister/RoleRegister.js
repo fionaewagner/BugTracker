@@ -71,7 +71,7 @@ const RoleRegister=()=>{
             <Row className="mt-2">
                     <Col xs='8'/>
                     <Col >
-                        <Link to='/userreg' className="btn move-o">
+                        <Link to={admin? '/adreg' : '/userreg'} className="btn move-o">
                             Continue to {admin ? "admin " : "user "} register page{"   "}
                             <FontAwesomeIcon icon={faArrowCircleRight}/>
                         </Link>

@@ -15,11 +15,12 @@ import {
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
 import { registerUser } from "../../../../Controllers/Redux/authSlice";
-import { register } from "../../../../actions/auth";
+import { register, userRegister } from "../../../../actions/auth";
 import { Link, useNavigate } from "react-router-dom";
 import LoginPage from "../LoginPage/LoginPage";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { useState } from "react";
+import Logo from '../../../../Images//Logo66-01.png'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
@@ -32,23 +33,33 @@ const RegisterPage=()=>{
     const navigate = useNavigate();
 
     const handleRegister=(values)=>{
+        const group = {
+            name: values.name,
+            key: values.key
+        }
         const currentUser={
             username: values.username,
             email: values.email,
-            password: values.password
+            password: values.password,
+            group: group,
+            admin: false
         }
         console.log(currentUser);
-        register(currentUser, navigate);
+        userRegister(currentUser, navigate);
     dispatch(registerUser(currentUser));
 
 }
     return(
-        <div className="auth-page">
-            <div className='auth-title mt-3'>
-                <h1>Bug Tracker</h1>
-                <p>Register</p>
-            </div>
-        <Row>
+        <div>
+            <Row>
+                <div className="text-center">
+                <img src={Logo} width='130' height='130'/>
+                    <h1 className="admin-reg-title">Bug Tracker</h1>
+                    <p>User Registration</p>
+                </div>
+
+            </Row>
+        <Row className="admin-reg-page">
             <Col/>
             <Col>
                 <div className="reg-card">
@@ -152,7 +163,6 @@ const RegisterPage=()=>{
                         <Col >
                             <Link to='/' className="rmv-dec">Log in</Link>
                         </Col>
-                   
                 </Row>
             </Col>
             

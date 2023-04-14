@@ -41,7 +41,7 @@ export const registerGroup=async(group)=>{
 
 
 
-export const joinGroup=async(group,_id)=>{
+export const joinGroup=async(group)=>{
   const {name, key} = group;
 
   const config = {
@@ -59,10 +59,7 @@ export const joinGroup=async(group,_id)=>{
 
     if(data){
         console.log("Group was joined succesfully " + data._id)
-        const user={
-            group: data._id
-        }
-        updateUser(_id, user)
+        return data._id;
         }
         else{
           console.log("Join failed")

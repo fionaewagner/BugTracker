@@ -11,6 +11,7 @@ import RegisterPage from "./Views/Pages/AuthPages/RegisterPage/RegisterPage";
 import LoginPage from "./Views/Pages/AuthPages/LoginPage/LoginPage";
 import MyGroup from "./Views/Pages/MyGroup/MyGroup";
 import RoleRegister from "./Views/Pages/AuthPages/RoleRegister/RoleRegister";
+import AdminRegisterPage from "./Views/Pages/AuthPages/AdminRegisterPage/AdminRegisterPage";
 
 
 const Content = ({ sidebarIsOpen, toggleSidebar, setSidebarOpen}) => {
@@ -29,6 +30,7 @@ const Content = ({ sidebarIsOpen, toggleSidebar, setSidebarOpen}) => {
       <Route exact path="/" element={<LoginPage/>} />
       <Route exact path="/register" element={<RoleRegister/>} />
       <Route exact path="/userreg" element={<RegisterPage/>} />
+      <Route exact path="/adreg" element={<AdminRegisterPage/>} />
       <Route exact path="/dashboard" element={token ? <Dashboard sidebarIsOpen={sidebarIsOpen}/> : <Navigate to="/" />} />
       <Route exact path="/bugs" element={token ? <BugsDisplay sidebarIsOpen={sidebarIsOpen}/> : <Navigate to="/" />} />
       <Route exact path='/groups' element={token ? <MyGroup sidebarIsOpen={sidebarIsOpen}/> : <Navigate to="/" />}/>

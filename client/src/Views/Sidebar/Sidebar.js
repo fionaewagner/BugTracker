@@ -41,7 +41,8 @@ const SideBar = ({ isOpen, toggle }) => {
   <>
   
   <Button  className={cx('toggle-button', {
-   'hidden': location.pathname ==='/' || location.pathname==='/register',
+   'hidden': location.pathname ==='/' || location.pathname==='/register' 
+   || location.pathname==='/userreg' || location.pathname==='/adreg',
    
 })}  onClick={toggle} >
         <FontAwesomeIcon icon={faChartBar}  />
