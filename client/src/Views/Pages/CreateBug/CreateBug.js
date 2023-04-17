@@ -16,7 +16,6 @@ const CreateBug=()=>{
         const date =  new Date()
         const bug = {
             name: values.name,
-            _id: bugs.length + 1,
             description: values.description,
             project: values.project,
             priority: values.priority.toLowerCase(),

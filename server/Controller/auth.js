@@ -12,9 +12,22 @@ export const getUsers = async(req, res, next)=>{
         
     } catch (error) {
         next(err)
-        
     }
 }
+
+export const getUserById=async(req,res,next)=>{
+    const { _id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send(`No user with id: ${_id}`);
+    try{
+        const user = await User.findById(_id);
+        res.json(user);
+    }
+    catch(err){
+        next(err)
+    }
+}
+    
+    
 
 
 export const register = async (req, res, next) => {

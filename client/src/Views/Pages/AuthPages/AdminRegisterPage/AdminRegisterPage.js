@@ -15,7 +15,7 @@ import {
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
 import { registerUser } from "../../../../Controllers/Redux/authSlice";
-import { register } from "../../../../actions/auth";
+import { register, userRegister } from "../../../../actions/auth";
 import { Link, useNavigate } from "react-router-dom";
 import LoginPage from "../LoginPage/LoginPage";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
@@ -46,8 +46,8 @@ const AdminRegisterPage=()=>{
             admin: true
         }
         console.log(currentUser);
-        register(currentUser, navigate);
-    dispatch(registerUser(currentUser));
+        userRegister(currentUser, navigate);
+        dispatch(registerUser(currentUser));
 
 }
     return(

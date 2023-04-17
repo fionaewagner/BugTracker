@@ -6,12 +6,13 @@ import crypto from 'crypto'
 const groupSchema = new mongoose.Schema({
     name: {
       type: String,
-      required: [true, "Please provide group name"]
+      required: [true, "Please provide group name"],
+      unique: true
     },
     key: {
       type: String,
       required: [true, "Please provide group key"],
-      unique: true
+      
     }
   });
 

@@ -46,7 +46,7 @@ const RegisterPage=()=>{
         }
         console.log(currentUser);
         userRegister(currentUser, navigate);
-    dispatch(registerUser(currentUser));
+        dispatch(registerUser(currentUser));
 
 }
     return(

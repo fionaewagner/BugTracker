@@ -12,10 +12,34 @@ export const getBugs = async(req, res, next)=>{
         next(err)
     }
 }
+
+export const getBugsByGroup=async(req,res,next)=>{
+  const groupId = req.body;
+  //6425ed74688047b8498c3c91
+  try {
+    const bugs = await Bug.aggregate([
+      {
+        $match: {
+          groupId: groupId
+        }
+      }
+    ])
+    console.log("Getting bugs" + bugs)
+    res.status(200).json(bugs)
+  } catch (error) {
+    console.log(error);
+    return next(new ErrorResponse("Could not retreive bugs", 500))
+  }
+
+}
+export const getBugsByUser=async()=>{
+
+}
+
 export const createBug = async (req, res, next) => {
     console.log('creating bug')
     console.log(req.body);
-    const {  _id,
+    const {
         name,
         description,
         project,
@@ -23,11 +47,11 @@ export const createBug = async (req, res, next) => {
         creator,
         assigned,
         status,
-        datePosted } = req.body;
+        datePosted,
+        groupId } = req.body;
   
     try {
       const bug = await Bug.create({
-        _id,
         name,
         description,
         project,
@@ -35,7 +59,8 @@ export const createBug = async (req, res, next) => {
         creator,
         assigned,
         status,
-        datePosted
+        datePosted,
+        groupId
       });
 
       await bug.save()
@@ -45,6 +70,21 @@ export const createBug = async (req, res, next) => {
       next(err);
     }
   };
+
+  export const deleteBug = async (req, res, next) => {
+    const { _id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send(`No bug with id: ${_id}`);
+    try{
+        await Bug.findByIdAndRemove(_id);
+
+    res.json({ message: "Bug deleted successfully." });
+    }catch(err){
+        console.log(err)
+    }
+    
+
+}
 
 
 const bugRouter = express.Router

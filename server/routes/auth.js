@@ -1,9 +1,10 @@
 import express  from "express";
-import { register, login, forgotPassword, getUsers, deleteUser, updateUser } from "../Controller/auth.js";
+import { register, login, forgotPassword, getUsers, deleteUser, updateUser, getUserById } from "../Controller/auth.js";
 
 export const authRouter = express.Router()
 
 authRouter.route("/register").post(register);
+authRouter.route('/:_id').get(getUserById)
 authRouter.patch('/:_id', updateUser)
 authRouter.route("/login").post(login);
 authRouter.route("/forgotpassword").post(forgotPassword);

@@ -3,12 +3,20 @@ import BugsStatusCard from "../../BugByAttributeCards/BugsStatusCard/BugsStatusC
 import BugsTypeCard from "../../BugByAttributeCards/BugsTypeCard/BugsTypeCard"
 import TotalBugsCard from "../../TotalBugsCard/TotalBugsCard"
 import Header from "../../Header/Header"
+import { getBugsForUserGroup } from "../../../actions/bugs"
+import { useDispatch } from "react-redux"
+import { useEffect } from "react"
 
 
 
 const Dashboard = ({sidebarIsOpen})=>{
 
     const token = sessionStorage.getItem("authToken")
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        getBugsForUserGroup(dispatch)
+    },[])
 
     if(token){
         console.log("found token")

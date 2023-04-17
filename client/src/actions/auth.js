@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { setName, setUser } from '../Controllers/Redux/authSlice';
-import { joinGroup } from './group';
+import { joinGroup, registerGroup } from './group';
 
 const url = 'http://localhost:5000/auth';
 
@@ -24,11 +24,12 @@ export const register=async(user, navigate, dispatch)=>{
       );
 
       if(data){
-      sessionStorage.setItem("authToken", data.token);
-      sessionStorage.setItem("userId", data._id)
-      navigate("../dashboard", { replace: true });
-      dispatch(setUser(email))
-      dispatch(setName(username))
+        console.log(data)
+        sessionStorage.setItem("authToken", data.token);
+        sessionStorage.setItem("userId", data._id)
+        navigate("../dashboard", { replace: true });
+        dispatch(setUser(email))
+        dispatch(setName(username))
       }
       else{
         console.log("Invalid Credentials")
@@ -40,12 +41,21 @@ export const register=async(user, navigate, dispatch)=>{
 }
 
 export const userRegister=async(user, navigate, dispatch)=>{
-  const {username,email, password,group} = user;
+  const {username,email, password,group, admin} = user;
   let groupId;
-  try{
-    groupId = await joinGroup(group)
-  }catch(error){
-    console.log(error)
+  if(admin){
+    console.log("Creating new admin user type")
+    try{
+      groupId = await registerGroup(group);
+    }catch(error){
+      console.log(error)}
+  }
+  else{
+    try{
+      groupId = await joinGroup(group);
+    }catch(error){
+      console.log(error)
+    }
   }
     try {
         const config = {
@@ -60,7 +70,7 @@ export const userRegister=async(user, navigate, dispatch)=>{
           email,
           password,
           groupId,
-          admin: false
+          admin
         },
         config
       );
@@ -118,6 +128,16 @@ export const updateUser = async (_id, user) => {
     console.log(error.message);
   }
 };
+
+export const getUser = async(_id)=>{
+  try{
+    const user = axios.get(`${url}/${_id}`);
+    return user;
+
+  }catch(err){
+    console.log(err.message)
+  }
+}
 
 
 export const signOff=async()=>{

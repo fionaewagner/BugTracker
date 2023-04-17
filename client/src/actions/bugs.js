@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { setBugs } from '../Controllers/Redux/bugsSlice';
+import { getUser } from './auth';
 
 
 const url = 'http://localhost:5000/bugs';
@@ -17,10 +18,24 @@ export const getBugs=async(dispatch)=>{
   
   }
 
-  export const createBug=async(bug)=>{
+  export const getBugsForUserGroup=async(dispatch)=>{
+    try{
+      const user = await getUser(sessionStorage.getItem("userId")) 
+      if(user){
+        const groupId = user.groupId
+        const bugs = await axios.get(`${url}/group`, {groupId})
+        dispatch(setBugs(bugs))
+        return bugs;
+      }
 
-  
-    const {_id,
+    }catch(err){
+      console.log(err.message)
+
+    }
+  }
+
+  export const createBug=async(bug)=>{
+    const {
         name,
         description,
         project,
@@ -28,7 +43,8 @@ export const getBugs=async(dispatch)=>{
         creator,
         assigned,
         status,
-        datePosted} = bug;
+        datePosted,
+        groupId} = bug;
   
       try {
           const config = {
@@ -39,7 +55,6 @@ export const getBugs=async(dispatch)=>{
   
           const {data} = await axios.post( `${url}/create`,
           {
-            _id,
             name,
             description,
             project,
@@ -47,7 +62,8 @@ export const getBugs=async(dispatch)=>{
             creator,
             assigned,
             status,
-            datePosted
+            datePosted,
+            groupId
           },
           config
         );    

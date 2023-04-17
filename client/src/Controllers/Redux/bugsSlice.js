@@ -2,20 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import bugModel from "../../Models/bugModel";
 
 const initialState = {
-    bugsArray:[new bugModel({id: 0,
-        _id:0,
-        name: "First Bug",
-        project:"Bug Tracker App",
-        description: "Reboot on Submit",
-        priority:"high",
-        creator:"John Smith",
-        assigned: "Hailey Smith",
-        status: "open",
-        datePosted:"4/4/2022"
-
-    })
-
-    ]
+    bugsArray:[]
 }
 
 const bugsSlice = createSlice({
