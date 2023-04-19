@@ -12,7 +12,10 @@ const authSlice = createSlice({
             state.loggedIn=true
         },
         registerUser:(state,action)=>{
-            return ({...state, user: action.payload})
+            state.user = action.payload
+        },
+        setUserGroupMembers:(state,action)=>{
+            state.groupMembers = action.payload
         },
         setUser:(state, action)=>{
             return ({...state, email: action.payload})
@@ -34,6 +37,8 @@ export const {setUser}=authSlice.actions
 
 export const {setName}=authSlice.actions
 
+export const {setUserGroupMembers} = authSlice.actions
+
 export const authReducer = authSlice.reducer
 
 export const selectAuth =(state)=>{
@@ -42,6 +47,10 @@ export const selectAuth =(state)=>{
 
 export const selectUser=(state)=>{
     return state.auth.user
+}
+
+export const selectGroupMembers=(state)=>{
+    return state.auth.groupMembers
 }
 
 export const getUser=(state)=>{

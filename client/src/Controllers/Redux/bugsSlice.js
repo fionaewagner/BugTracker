@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import bugModel from "../../Models/bugModel";
 
 const initialState = {
-    bugsArray:[]
+    bugsArray:[],
+    selectedBug: {}
 }
 
 const bugsSlice = createSlice({
@@ -13,31 +14,23 @@ const bugsSlice = createSlice({
             state.bugsArray = action.payload;
             console.log(state.bugsArray)
         },
-        addBug: (state, action)=>{
-            console.log(action.payload)
-            console.log(state.bugsArray)
-            const newBug = new bugModel({
-                _id: state.bugsArray.length +1,
-                ...action.payload
-            });
-            state.bugsArray.push(newBug)
+        setSelectedBug: (state, action)=>{
+            state.selectedBug = action.payload;
         }
     }
 })
 
 export const bugsReducer = bugsSlice.reducer
 
-export const {addBug} = bugsSlice.actions
-
 export const {setBugs} = bugsSlice.actions
+
+export const {setSelectedBug} = bugsSlice.actions
 
 
 export const selectAllBugs=(state)=>{
     return state.bugs.bugsArray
 }
 
-export const selectBugById = (id) => (state) => {
-    return state.bugs.bugsArray.find(
-        (bug) => bug._id === parseInt(id)
-    );
+export const selectBug = (state) => {
+    return state.bugs.selectedBug
 };

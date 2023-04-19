@@ -5,8 +5,8 @@ const bugSchema=mongoose.Schema({
     description: String,
     project:String,
     priority: String,
-    creator: String,
-    assigned: String,
+    creator: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    assigned: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     status: String,
     datePosted:Date,
     groupId: { type: mongoose.Schema.Types.ObjectId, ref: 'Group' }

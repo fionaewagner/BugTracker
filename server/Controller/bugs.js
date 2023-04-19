@@ -13,6 +13,20 @@ export const getBugs = async(req, res, next)=>{
     }
 }
 
+export const getBugById= async(req,res,next)=>{
+  const { _id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send(`No bug with id: ${_id}`);
+  try{
+    const bug = await Bug.findById(_id);
+    res.status(200).json(bug);
+
+  }catch(error){
+    console.log(error)
+    return next(error)
+  }
+}
+
 export const getBugsByGroup=async(req,res,next)=>{
   const groupId = req.body;
   //6425ed74688047b8498c3c91

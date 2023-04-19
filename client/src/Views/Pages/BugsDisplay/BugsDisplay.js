@@ -28,10 +28,11 @@ const BugsDisplay=({sidebarIsOpen})=>{
             </Row>
             <Row className='mb-4'>
                 <Col xs='1'/>
-                <Col xs='6'>
+                <Col xs='2' className='new-bug-btn'>
                    <Link to='/create' className='create-btn btn'>
-                        Create New Bug
+                        <FontAwesomeIcon icon={faPlus}/>{"  "}New Bug
                    </Link> 
+                   
                 </Col>
             </Row>
             <div className='bugs'>

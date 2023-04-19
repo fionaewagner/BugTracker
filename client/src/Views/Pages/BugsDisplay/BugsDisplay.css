@@ -17,14 +17,15 @@
 .bug-row:hover{
     background-color: rgb(225, 225, 225);
 }
+
 .create-btn{
-    background-color: rgb(66, 188, 236) !important;
+    background-color: rgb(173, 173, 173) !important;
+    margin-right: 1%;
+    
     
 }
 
-.create-btn:hover{
-    background-color: rgb(74, 204, 255) !important ;
-}
+
 
 .add-btn{
     font-size: large;

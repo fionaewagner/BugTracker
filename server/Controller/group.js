@@ -45,8 +45,6 @@ export const createGroup = async (req, res, next) => {
     }
     try{
         const group = await Group.findOne({name}).select("+key");
-        
-
         if(!group){
            return next(new ErrorResponse("Invalid Credentials", 401))
         }

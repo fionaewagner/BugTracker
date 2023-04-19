@@ -20,10 +20,31 @@ export const getUserById=async(req,res,next)=>{
     if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send(`No user with id: ${_id}`);
     try{
         const user = await User.findById(_id);
-        res.json(user);
+        res.status(200).json(user);
     }
     catch(err){
         next(err)
+    }
+}
+
+export const getUsersByGroup=async(req,res,next)=>{
+    const { groupId } = req.body;
+    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send(`No user with group id: ${_id}`);
+    try{
+        const users = await User.aggregate([
+            {
+              $match: {
+                groupId: groupId
+              }
+            }
+          ])
+        console.log("Getting users" + users)
+        res.status(200).json(users)
+
+    }catch(err){
+        console.log(err);
+        return next(new ErrorResponse("Could not retreive users", 500))
+
     }
 }
     
@@ -188,11 +209,11 @@ const sendToken=(user, statusCode,res)=>{
 
 export const updateUser = async (req, res) => {
     const { _id } = req.params;
-    const {group} = req.body;
+    const {groupId} = req.body;
     
     if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send(`No user with id: ${_id}`);
   
-    const updatedUser = {group};
+    const updatedUser = {groupId};
     console.log("this group is: " + req.body)
 
         try{

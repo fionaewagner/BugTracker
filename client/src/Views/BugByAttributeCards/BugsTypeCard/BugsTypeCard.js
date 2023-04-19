@@ -12,6 +12,7 @@ const BugsTypeCard =()=>{
   ChartJS.register(ArcElement, Tooltip, Legend);
 
   const bugs = useSelector(selectAllBugs)
+  console.log("bugs are: " + bugs)
   const lowPri = bugs.filter((bug)=>bug.priority === 'low').length
   const midPri = bugs.filter((bug)=>bug.priority === 'mid').length
   const highPri = bugs.filter((bug)=>bug.priority === 'high').length

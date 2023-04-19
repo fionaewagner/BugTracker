@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { setName, setUser } from '../Controllers/Redux/authSlice';
+import { registerUser, setName, setUser, setUserGroupMembers } from '../Controllers/Redux/authSlice';
 import { joinGroup, registerGroup } from './group';
 
 const url = 'http://localhost:5000/auth';
@@ -78,6 +78,7 @@ export const userRegister=async(user, navigate, dispatch)=>{
       if(data){
       sessionStorage.setItem("authToken", data.token);
       sessionStorage.setItem("userId", data._id)
+      sessionStorage.setItem("username", data.username)
       navigate("../dashboard", { replace: true });
       dispatch(setUser(email))
       dispatch(setName(username))
@@ -129,14 +130,52 @@ export const updateUser = async (_id, user) => {
   }
 };
 
-export const getUser = async(_id)=>{
+export const updateUserGroup = async(_id, group)=>{
   try{
-    const user = axios.get(`${url}/${_id}`);
-    return user;
+    const groupId = await joinGroup(group);
+    if(groupId){
+      try {
+        console.log("patching now")
+        axios.patch(`${url}/${_id}`, {groupId:groupId});
+      } catch (error) {
+        console.log(error.message);
+      }
+
+    }
+  }catch(error){
+    console.log(error)
+  }
+
+}
+
+export const getUser = async(_id,dispatch)=>{
+  try{
+    const {data} = await axios.get(`${url}/${_id}`);
+    if(data){
+    getUsersByGroup(data.groupId, dispatch)
+    dispatch(registerUser(data))
+    return data;
+  }
 
   }catch(err){
-    console.log(err.message)
+    console.log(err)
   }
+}
+
+export const getUsersByGroup=async(groupId, dispatch)=>{
+  console.log("the grop is: " + groupId)
+  try{
+    const {data} = await axios.get(`${url}/group`, { groupId: groupId});
+    if(data){
+    console.log("data is:" + data)
+    dispatch(setUserGroupMembers(data))
+    return data;
+  }
+
+  }catch(err){
+    console.log(err)
+  }
+
 }
 
 

@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { joinGroup } from "../../../actions/group";
 import { useState } from "react";
 import Modal from "../../Modal/Modal";
+import { updateUserGroup } from "../../../actions/auth";
 
 const MyGroup =({sidebarIsOpen})=>{
 
@@ -32,7 +33,7 @@ const MyGroup =({sidebarIsOpen})=>{
         setGroupObj(group)
         console.log("Group is: " + group)
         setModalOpen(true)
-        //joinGroup(group,_id)
+        //updateUserGroup(_id,group)
         
 
     }
@@ -113,7 +114,7 @@ const MyGroup =({sidebarIsOpen})=>{
             </Card>
             {modalOpen && <Modal 
             setOpenModal={setModalOpen} sidebarIsOpen={sidebarIsOpen}
-            title={title} text={text} onModalCont={joinGroup(groupObj,userId)}/>}
+            title={title} text={text} onModalCont={()=>updateUserGroup(userId,groupObj)}/>}
         </div>
 
     )

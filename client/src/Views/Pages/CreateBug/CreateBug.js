@@ -4,29 +4,44 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { selectAllBugs } from "../../../Controllers/Redux/bugsSlice";
 import { addBug } from "../../../Controllers/Redux/bugsSlice";
 import { createBug } from "../../../actions/bugs";
-import { getName } from "../../../Controllers/Redux/authSlice";
+import { getName, selectGroupMembers, selectUser } from "../../../Controllers/Redux/authSlice";
+import { getUser } from "../../../actions/auth";
+import { useEffect } from "react";
 const CreateBug=()=>{
     const dispatch = useDispatch()
     const bugs = useSelector(selectAllBugs)
-    const user = useSelector(getName)
+    const user = useSelector(selectUser)
+    const gpMembers = useSelector(selectGroupMembers)
+
+    console.log("all members:" + gpMembers)
+
+    
+
+    useEffect(()=>{
+        getUser(sessionStorage.getItem("userId"), dispatch)
+    },[])
+
     
 
     const handleCreate=(values)=>{
         
         const date =  new Date()
+        console.log(gpMembers)
+        
         const bug = {
             name: values.name,
             description: values.description,
             project: values.project,
             priority: values.priority.toLowerCase(),
-            creator: user,
+            creator: user._id,
             assigned: values.assigned,
             status: 'open',
-            datePosted: date
+            datePosted: date,
+            groupId: user.groupId
 
         }
-        console.log(bug.priority)
-        createBug(bug)
+        console.log(bug)
+        //createBug(bug)
         
 
     }
@@ -78,15 +93,22 @@ const CreateBug=()=>{
                 <Row  className="card-row">
                 <Col xs='2'>
                     </Col>
-                    <Col xs='7'>
+                    <Col >
                         <p className="title">Assigned</p>
                         <Field as='input' name='assigned' id='assigned'/>
                     </Col>
                     
                 </Row>
+                <Row className="text-center mt-3">
+                
+                <Col>
+                    <Button type='submit'>Submit</Button>
+                </Col>
+                
+                </Row>
                 
             </div>
-            <Button type='submit'>Submit</Button>
+            
 
        </Card>
        </Form>
