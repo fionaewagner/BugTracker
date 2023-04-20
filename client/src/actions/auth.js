@@ -150,7 +150,7 @@ export const updateUserGroup = async(_id, group)=>{
 
 export const getUser = async(_id,dispatch)=>{
   try{
-    const {data} = await axios.get(`${url}/${_id}`);
+    const {data} = await axios.get(`${url}/find/${_id}`);
     if(data){
     getUsersByGroup(data.groupId, dispatch)
     dispatch(registerUser(data))
@@ -163,11 +163,11 @@ export const getUser = async(_id,dispatch)=>{
 }
 
 export const getUsersByGroup=async(groupId, dispatch)=>{
-  console.log("the grop is: " + groupId)
+  console.log("data is:" + groupId)
   try{
-    const {data} = await axios.get(`${url}/group`, { groupId: groupId});
+    const {data} = await axios.get(`${url}/group`, { params: { groupId }});
     if(data){
-    console.log("data is:" + data)
+      
     dispatch(setUserGroupMembers(data))
     return data;
   }

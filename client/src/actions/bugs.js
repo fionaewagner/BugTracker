@@ -51,7 +51,7 @@ export const getBugs=async(dispatch)=>{
     }
   }
 
-  export const createBug=async(bug)=>{
+  export const createBug=async(bug, navigate)=>{
     const {
         name,
         description,
@@ -83,7 +83,11 @@ export const getBugs=async(dispatch)=>{
             groupId
           },
           config
-        );    
+        ); 
+        if(data){
+          navigate("../dashboard", { replace: true });
+
+        }   
       } catch (error) {
         console.log(error)
           

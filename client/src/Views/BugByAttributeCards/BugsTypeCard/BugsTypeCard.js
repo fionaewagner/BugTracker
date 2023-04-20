@@ -16,7 +16,7 @@ const BugsTypeCard =()=>{
   const lowPri = bugs.filter((bug)=>bug.priority === 'low').length
   const midPri = bugs.filter((bug)=>bug.priority === 'mid').length
   const highPri = bugs.filter((bug)=>bug.priority === 'high').length
-  const urgPri = bugs.filter((bug)=>bug.priority === 'urgen').length
+  const urgPri = bugs.filter((bug)=>bug.priority === 'urgent').length
 
 const data = {
   labels: [

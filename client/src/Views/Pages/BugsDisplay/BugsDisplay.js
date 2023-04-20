@@ -47,13 +47,13 @@ const BugsDisplay=({sidebarIsOpen})=>{
                 {bugs.map((bug)=>{
                     console.log(bug)
                     return(
-                    <Link to={`${bug._id}`}>
+                    <Link to={`${bug._id}`} className='bug-display-itm'>
                         <Row className='bug-row'>
                         <Col xs='3'>
-                        {bug.name}
+                        {bug.name ? bug.name : "Untitled"}
                         </Col>
                         <Col>
-                        {bug.description}
+                        {bug.description ? bug.description : "No description available"}
                         </Col>
                         </Row>
                     </Link>)})}

@@ -4,7 +4,7 @@ import { register, login, forgotPassword, getUsers, deleteUser, updateUser, getU
 export const authRouter = express.Router()
 
 authRouter.route("/register").post(register);
-authRouter.route('/:_id').get(getUserById)
+authRouter.route('/find/:_id').get(getUserById)
 authRouter.route('/group').get(getUsersByGroup)
 authRouter.patch('/:_id', updateUser)
 authRouter.route("/login").post(login);

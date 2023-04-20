@@ -7,13 +7,13 @@ import { createBug } from "../../../actions/bugs";
 import { getName, selectGroupMembers, selectUser } from "../../../Controllers/Redux/authSlice";
 import { getUser } from "../../../actions/auth";
 import { useEffect } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 const CreateBug=()=>{
     const dispatch = useDispatch()
     const bugs = useSelector(selectAllBugs)
     const user = useSelector(selectUser)
     const gpMembers = useSelector(selectGroupMembers)
-
-    console.log("all members:" + gpMembers)
+    const navigate = useNavigate()
 
     
 
@@ -26,7 +26,7 @@ const CreateBug=()=>{
     const handleCreate=(values)=>{
         
         const date =  new Date()
-        console.log(gpMembers)
+        console.log("values are:" + values)
         
         const bug = {
             name: values.name,
@@ -41,18 +41,19 @@ const CreateBug=()=>{
 
         }
         console.log(bug)
-        //createBug(bug)
+        createBug(bug, navigate)
         
 
     }
-    return(
+    if(user && gpMembers){return(
+        
         <Formik 
         initialValues={{
             name: "",
             description:"",
             project:"",
-            assigned:"",
-            priority: "Low"
+            assigned:"yo mama",
+            priority: "low"
         }}
         onSubmit={handleCreate}>
             <Form>
@@ -85,8 +86,8 @@ const CreateBug=()=>{
                         <Field as='select' id='priority' name='priority'>
                             <option value="low">Low</option>
                             <option value="mid">Mid</option>
-                            <option value="high">Urgent</option>
-                            <option value="urgen">High</option>
+                            <option value="urgent">Urgent</option>
+                            <option value="high">High</option>
                         </Field>
                     </Col>
                 </Row >
@@ -95,7 +96,14 @@ const CreateBug=()=>{
                     </Col>
                     <Col >
                         <p className="title">Assigned</p>
-                        <Field as='input' name='assigned' id='assigned'/>
+                        <Field as='select' id='assigned' name='assigned'>
+                            <option value="">Select a member...</option>
+                            {gpMembers.map(member => (
+                                <option key={member._id} value={member._id} >
+                                    {member.username}
+                                </option>
+                            ))}
+                        </Field>
                     </Col>
                     
                 </Row>
@@ -114,7 +122,18 @@ const CreateBug=()=>{
        </Form>
         </Formik>
     )
+                        }else{
+                            <Navigate to='/dashboard'/>
+                        }
 
 }
+
+/**{
+    gpMembers.map((m)=>{
+        return(
+            <option value={m._id} key={m._id}name='assigned'>{m._id}</option>
+        )
+    })
+}**/
 
 export default CreateBug

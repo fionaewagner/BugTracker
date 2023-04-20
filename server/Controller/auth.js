@@ -28,16 +28,10 @@ export const getUserById=async(req,res,next)=>{
 }
 
 export const getUsersByGroup=async(req,res,next)=>{
-    const { groupId } = req.body;
-    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send(`No user with group id: ${_id}`);
+    const { groupId } = req.query;
+    if (!mongoose.Types.ObjectId.isValid(groupId)) return res.status(404).send(`No user with group id: ${groupId}`);
     try{
-        const users = await User.aggregate([
-            {
-              $match: {
-                groupId: groupId
-              }
-            }
-          ])
+        const users = await await User.find({ groupId: groupId })
         console.log("Getting users" + users)
         res.status(200).json(users)
 

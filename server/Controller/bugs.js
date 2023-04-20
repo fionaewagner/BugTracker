@@ -31,13 +31,7 @@ export const getBugsByGroup=async(req,res,next)=>{
   const groupId = req.body;
   //6425ed74688047b8498c3c91
   try {
-    const bugs = await Bug.aggregate([
-      {
-        $match: {
-          groupId: groupId
-        }
-      }
-    ])
+    const bugs = await await Bug.find({ groupId: groupId })
     console.log("Getting bugs" + bugs)
     res.status(200).json(bugs)
   } catch (error) {
