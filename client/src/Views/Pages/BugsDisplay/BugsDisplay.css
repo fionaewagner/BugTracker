@@ -4,35 +4,37 @@
     color:rgb(252, 244, 233);
     box-shadow: 10px 10px 20px #e0e0e0,
     -10px -10px 20px white;
-   background: linear-gradient(to left, rgb(255, 119, 0),rgb(255, 150, 13) , rgb(255, 161, 38) );
-   padding: 10px;
+    background: linear-gradient(to left, rgb(255, 119, 0),rgb(255, 150, 13) , rgb(255, 161, 38) );
+    padding: 10px;
 }
 .bugs-card{
     padding: 10px;
-    
 }
 .bugs{
-    padding-left: 10%;
+    padding: 0% 9%;
 }
-.bug-row:hover{
-    background-color: rgb(225, 225, 225);
+
+.bug-row{
+    border-bottom: 1px solid gray;
+    padding: 1%;
+    margin: 3%;
 }
 
 .create-btn{
     background-color: rgb(173, 173, 173) !important;
     margin-right: 1%;
-    
-    
 }
-
-
 
 .add-btn{
     font-size: large;
-    
 }
 
 .bug-display-itm{
     text-decoration: none !important;
+    color: black;
+    
+}
 
+.bug-display-itm:hover{
+    color: rgb(33, 33, 33) !important;
 }

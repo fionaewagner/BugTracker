@@ -23,7 +23,7 @@ const BugView=()=>{
                 <BugCard bug={bug}/>
             </Col>
             <Col>
-                <CommentsCard/>
+                <CommentsCard bug={bug}/>
             </Col>
         </Row>
     )

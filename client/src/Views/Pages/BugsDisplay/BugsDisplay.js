@@ -1,6 +1,6 @@
 import './BugsDisplay.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { selectAllBugs } from '../../../Controllers/Redux/bugsSlice'
 import { Card, Col, Row, Button } from 'reactstrap'
 import { Link } from 'react-router-dom'
@@ -11,10 +11,17 @@ import {
     faPlus
     
   } from "@fortawesome/free-solid-svg-icons";
+import { getBugsForUserGroup } from '../../../actions/bugs';
 
 const BugsDisplay=({sidebarIsOpen})=>{
+
+    const dispatch = useDispatch()
     
     const bugs = useSelector(selectAllBugs)
+
+    useEffect(()=>{
+        getBugsForUserGroup(dispatch)
+    },[])
     return(
         <div className='bugs-display'>
             <Header name={"Bugs"} sidebarIsOpen={sidebarIsOpen}/>
@@ -36,7 +43,7 @@ const BugsDisplay=({sidebarIsOpen})=>{
                 </Col>
             </Row>
             <div className='bugs'>
-                <Row>
+                <Row className='mb-3'>
                     <Col xs='3'>
                         <h5>Bug Title</h5>
                     </Col>
@@ -49,12 +56,12 @@ const BugsDisplay=({sidebarIsOpen})=>{
                     return(
                     <Link to={`${bug._id}`} className='bug-display-itm'>
                         <Row className='bug-row'>
-                        <Col xs='3'>
-                        {bug.name ? bug.name : "Untitled"}
-                        </Col>
-                        <Col>
-                        {bug.description ? bug.description : "No description available"}
-                        </Col>
+                            <Col xs='3' >
+                            {bug.name ? bug.name : "Untitled"}
+                            </Col>
+                            <Col>
+                            {bug.description ? bug.description : "No description available"}
+                            </Col>
                         </Row>
                     </Link>)})}
             </div>

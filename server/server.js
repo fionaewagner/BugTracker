@@ -10,6 +10,7 @@ import { authRouter } from './routes/auth.js';
 import { privRouter } from './routes/private.js';
 import { bugsRouter } from './routes/bugs.js';
 import { groupRouter } from './routes/group.js';
+import { commentRouter } from './routes/comment.js';
 
 //const authRoute = require('./Controller/routes/auth.js')
 
@@ -35,6 +36,7 @@ app.use('/auth', authRouter)
 app.use('/bugs', bugsRouter)
 app.use('/private', privRouter)
 app.use('/group', groupRouter)
+app.use('/comment', commentRouter)
 
 //ERROR HANDLER MUST BE LAsT
 app.use(errorHandler)

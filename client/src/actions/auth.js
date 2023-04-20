@@ -178,6 +178,20 @@ export const getUsersByGroup=async(groupId, dispatch)=>{
 
 }
 
+export const getDisplayName=async(_id, doFun)=>{
+  try{
+    const {data} = await axios.get(`${url}/find/${_id}`);
+    if(data){
+      doFun(data.username)
+      return data.username;
+  }
+
+  }catch(err){
+    console.log(err)
+  }
+
+}
+
 
 export const signOff=async()=>{
   
