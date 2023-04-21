@@ -1,15 +1,19 @@
 import { useState } from "react"
 import { useSelector } from "react-redux"
-import { Card, Row, Col } from "reactstrap"
+import { Card, Row, Col, Button } from "reactstrap"
 import { createComment } from "../../actions/comment"
 import { selectLoading } from "../../Controllers/Redux/loadingSlice"
+import{
+    faTrash
+  }from "@fortawesome/free-solid-svg-icons"
 import Loading from "../Loading/Loading"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const CommentsCard=({bug})=>{
     const [comment, setComment] = useState("")
     const [comments, setComments] = useState(bug.comments)
     const loading = useSelector(selectLoading)
-    if(loading){
+    if(loading || comments == undefined){
         return(
             <Loading/>
         )
@@ -35,6 +39,7 @@ const CommentsCard=({bug})=>{
                         <Col>
                             <p className="title">Posted By</p>
                         </Col>
+                        <Col xs='1'/>
                     </Row>
                     {comments.map((c)=>{
                         console.log("c is: " + c.creator.username)
@@ -45,6 +50,11 @@ const CommentsCard=({bug})=>{
                                 </Col>
                                 <Col>
                                     <p>{c.creator.username}</p>
+                                </Col>
+                                <Col xs='1'>
+                                    <Button>
+                                        <FontAwesomeIcon icon={faTrash}/>
+                                    </Button>
                                 </Col>
                             </Row>
                         )
