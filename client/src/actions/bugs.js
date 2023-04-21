@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { setBugs, setSelectedBug } from '../Controllers/Redux/bugsSlice';
+import { setLoading } from '../Controllers/Redux/loadingSlice';
 import { getUser } from './auth';
 
 
@@ -19,11 +20,13 @@ export const getBugs=async(dispatch)=>{
   }
 
   export const getBug=async(_id, dispatch)=>{
+    dispatch(setLoading(true))
     try{
       const {data} = await axios.get(`${url}/${_id}`);
       if(data){
       console.log("data is:" + data)
       dispatch(setSelectedBug(data))
+      dispatch(setLoading(false))
       return data;
     }
   
@@ -34,6 +37,7 @@ export const getBugs=async(dispatch)=>{
   }
 
   export const getBugsForUserGroup=async(dispatch)=>{
+    dispatch(setLoading(true))
     try{
       const user = await getUser(sessionStorage.getItem("userId"), dispatch) 
       if(user){
@@ -42,6 +46,7 @@ export const getBugs=async(dispatch)=>{
         const bugs = await axios.get(`${url}/group`, {groupId})
         console.log("the response was: " + bugs.data)
         dispatch(setBugs(bugs.data))
+        dispatch(setLoading(false))
         return bugs;
       }
 

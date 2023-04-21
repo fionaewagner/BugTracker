@@ -7,11 +7,12 @@ import "./App.css";
 import { Col } from "reactstrap";
 import LoginPage from "./Views/Pages/AuthPages/LoginPage/LoginPage";
 import RegisterPage from "./Views/Pages/AuthPages/RegisterPage/RegisterPage";
-import { useSelector } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import { selectAuth, selectUser } from "./Controllers/Redux/authSlice";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getBugs } from "./actions/bugs";
+import { store } from "./app/store";
 
 
 
@@ -31,7 +32,7 @@ const App = () => {
     }
     
     return (
-    
+    <Provider store={store}>
       <Router>
         <div className="App wrapper">
         <SideBar toggle={toggleSidebar} isOpen={sidebarIsOpen} />
@@ -40,6 +41,7 @@ const App = () => {
           </Col>
         </div>
       </Router>
+    </Provider>
     )
   
   

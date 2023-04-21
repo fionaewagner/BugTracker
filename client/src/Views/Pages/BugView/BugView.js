@@ -7,15 +7,21 @@ import CommentsCard from '../../CommentsCard/CommentsCard';
 import './BugView.css'
 import { useEffect } from 'react';
 import { getBug } from '../../../actions/bugs';
+import Loading from '../../Loading/Loading';
+import { selectLoading } from '../../../Controllers/Redux/loadingSlice';
+
 const BugView=()=>{
     const {bugId} = useParams();
     const dispatch = useDispatch();
     const bug = useSelector(selectBug)
-    console.log(bug)
+    const loading = useSelector(selectLoading)
+    console.log("the bug is: " + bug)
 
     useEffect(()=>{
        getBug(bugId, dispatch)
     },[])
+
+    if(!loading){
 
     return(
         <Row>
@@ -27,6 +33,11 @@ const BugView=()=>{
             </Col>
         </Row>
     )
+    }else{
+        return(
+            <Loading/>
+        )
+    }
 
 }
 

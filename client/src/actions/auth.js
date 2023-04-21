@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { registerUser, setName, setUser, setUserGroupMembers } from '../Controllers/Redux/authSlice';
+import { setLoading } from '../Controllers/Redux/loadingSlice';
 import { joinGroup, registerGroup } from './group';
 
 const url = 'http://localhost:5000/auth';
@@ -27,6 +28,7 @@ export const register=async(user, navigate, dispatch)=>{
         console.log(data)
         sessionStorage.setItem("authToken", data.token);
         sessionStorage.setItem("userId", data._id)
+        sessionStorage.setItem("username", data.username)
         navigate("../dashboard", { replace: true });
         dispatch(setUser(email))
         dispatch(setName(username))
@@ -149,11 +151,13 @@ export const updateUserGroup = async(_id, group)=>{
 }
 
 export const getUser = async(_id,dispatch)=>{
+  dispatch(setLoading(true))
   try{
     const {data} = await axios.get(`${url}/find/${_id}`);
     if(data){
     getUsersByGroup(data.groupId, dispatch)
     dispatch(registerUser(data))
+    dispatch(setLoading(false))
     return data;
   }
 
@@ -163,12 +167,13 @@ export const getUser = async(_id,dispatch)=>{
 }
 
 export const getUsersByGroup=async(groupId, dispatch)=>{
+  dispatch(setLoading(true))
   console.log("data is:" + groupId)
   try{
     const {data} = await axios.get(`${url}/group`, { params: { groupId }});
     if(data){
-      
     dispatch(setUserGroupMembers(data))
+    dispatch(setLoading(false))
     return data;
   }
 

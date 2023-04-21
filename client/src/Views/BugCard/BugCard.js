@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react"
 import { Card, Col, Row, Container } from "reactstrap"
 import { getDisplayName } from "../../actions/auth"
+import Loading from "../Loading/Loading"
+import { useSelector } from "react-redux"
+import { selectLoading } from "../../Controllers/Redux/loadingSlice"
 import './BugCard.css'
 const BugCard = ({bug})=>{
     const {name, description,project, priority, creator, assigned, datePosted,_id} = bug
@@ -38,10 +41,12 @@ const BugCard = ({bug})=>{
 
 
 
-    if(bug != undefined){
-    
-
-
+    const loading = useSelector(selectLoading)
+    if(loading){
+        return(
+            <Loading/>
+        )
+    }else{
     return(
        <Card className="bug-card">
         <div className="card-body">
@@ -91,9 +96,6 @@ const BugCard = ({bug})=>{
        </Card>
         
     )
-    }
-    else{
-        return <></>
     }
 
 }

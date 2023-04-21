@@ -18,7 +18,10 @@ export const getBugById= async(req,res,next)=>{
 
   if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send(`No bug with id: ${_id}`);
   try{
-    const bug = await Bug.findById(_id);
+    const bug = await Bug.findById(_id).populate({
+      path: 'comments',
+      populate: { path: 'creator' }
+    });
     res.status(200).json(bug);
 
   }catch(error){

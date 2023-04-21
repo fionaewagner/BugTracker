@@ -35,6 +35,7 @@ export const createComment=async(comment, bugId)=>{
 }
 
 export const getCommentasync=async(_id, dispatch)=>{
+    
     try{
       const {data} = await axios.get(`${url}/${_id}`);
       if(data){
