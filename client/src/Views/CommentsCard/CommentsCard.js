@@ -1,17 +1,24 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { Card, Row, Col, Button } from "reactstrap"
-import { createComment } from "../../actions/comment"
+import { createComment, deleteComment, updateComment } from "../../actions/comment"
 import { selectLoading } from "../../Controllers/Redux/loadingSlice"
 import{
-    faTrash
+    faTrash,
+    faPen, 
+    faCheck
   }from "@fortawesome/free-solid-svg-icons"
 import Loading from "../Loading/Loading"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
+
 const CommentsCard=({bug})=>{
     const [comment, setComment] = useState("")
     const [comments, setComments] = useState(bug.comments)
+    const [editMode, setEditMode] = useState(false)
+    const [commentToEdit, setCommentToEdit] = useState({})
+    const [editedComment, setEditedComment] = useState("")
+   
     const loading = useSelector(selectLoading)
     if(loading || comments == undefined){
         return(
@@ -29,8 +36,8 @@ const CommentsCard=({bug})=>{
             setComments([...comments, {...newComment, creator: sessionStorage.getItem("username")}])}}>Add</button>
             <Card>
                 <div className="card-body">
-                    <div className="card-title title">
-                        <p>Comments</p>
+                    <div className="bug-card-ttl text-center p-2">
+                        <h4>Comments</h4>
                     </div>
                     <Row className="card-row">
                         <Col>
@@ -42,20 +49,48 @@ const CommentsCard=({bug})=>{
                         <Col xs='1'/>
                     </Row>
                     {comments.map((c)=>{
-                        console.log("c is: " + c.creator.username)
                         return(
                             <Row>
                                 <Col>
-                                    <p>{c.text}</p>
+                                    {editMode && commentToEdit===c ?
+                                    <input placeholder={c.text} onChange={(event)=>setEditedComment(event.target.value)}></input> :
+                                    <p>{c.text}</p>}
                                 </Col>
                                 <Col>
                                     <p>{c.creator.username}</p>
                                 </Col>
-                                <Col xs='1'>
-                                    <Button>
+                                {c.creator._id === sessionStorage.getItem("userId") ?
+                                    <Col xs='1'>
+                                        <Button id='editcom' onClick={()=>{
+                                            if(editMode && commentToEdit===c){
+                                                updateComment(c._id, editedComment)
+                                                const updatedComment = {
+                                                    ...c,
+                                                    text: editedComment,
+                                                  };
+                                                  const updatedComments = comments.map((comment) =>
+                                                    comment === c ? updatedComment : comment
+                                                  );
+                                                  setComments(updatedComments);
+                                            }
+                                            setEditMode(!editMode)
+                                            setCommentToEdit(c)
+                                            
+                                        }}>
+                                            <FontAwesomeIcon icon={editMode && commentToEdit===c ? faCheck :faPen}/>
+                                        </Button>
+                                    </Col> : <></>}
+                                    <Col xs='1'>
+                                    <Button onClick={()=>{
+                                        deleteComment(c._id)
+                                        setComments(comments.filter(comment => comment !== c));
+                                    }}>
                                         <FontAwesomeIcon icon={faTrash}/>
                                     </Button>
+                                    
+    
                                 </Col>
+                                
                             </Row>
                         )
                     })}

@@ -99,3 +99,12 @@ export const getBugs=async(dispatch)=>{
       }
   
   }
+
+  export const updateBug=async(_id, updatedBug)=>{
+    console.log("patching")
+    try {
+      axios.patch(`${url}/${_id}`, updatedBug);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }

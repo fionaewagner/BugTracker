@@ -9,12 +9,12 @@
     box-shadow: 1px 1px 5px rgb(235, 235, 235);
     overflow: auto !important;
     position: fixed !important;
-    z-index: 1;
+    z-index: 5;
     height: 100vh;
    
   }
   .toggle-button{
-    z-index: 3;
+    z-index: 6;
     margin-top:96vh;
     height: 5%;
     background-color: rgb(222, 221, 221);

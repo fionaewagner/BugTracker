@@ -52,7 +52,7 @@ const CreateBug=()=>{
             name: "",
             description:"",
             project:"",
-            assigned:"yo mama",
+            assigned:"",
             priority: "low"
         }}
         onSubmit={handleCreate}>
@@ -114,10 +114,7 @@ const CreateBug=()=>{
                 </Col>
                 
                 </Row>
-                
             </div>
-            
-
        </Card>
        </Form>
         </Formik>
@@ -128,12 +125,6 @@ const CreateBug=()=>{
 
 }
 
-/**{
-    gpMembers.map((m)=>{
-        return(
-            <option value={m._id} key={m._id}name='assigned'>{m._id}</option>
-        )
-    })
-}**/
+
 
 export default CreateBug

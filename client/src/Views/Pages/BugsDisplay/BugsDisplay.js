@@ -24,7 +24,6 @@ const BugsDisplay=({sidebarIsOpen})=>{
     },[])
     return(
         <div className='bugs-display'>
-            <Header name={"Bugs"} sidebarIsOpen={sidebarIsOpen}/>
             <Row>
                 <Col xs='11'>
             <Card className='bugs-card'>

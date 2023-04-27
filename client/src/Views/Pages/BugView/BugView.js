@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { selectBug, selectBugById } from '../../../Controllers/Redux/bugsSlice';
 import BugCard from '../../BugCard/BugCard';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, Container } from 'reactstrap';
 import CommentsCard from '../../CommentsCard/CommentsCard';
 import './BugView.css'
 import { useEffect } from 'react';
@@ -24,14 +24,18 @@ const BugView=()=>{
     if(!loading){
 
     return(
-        <Row>
-            <Col xs='6' className='side-border'>
-                <BugCard bug={bug}/>
-            </Col>
-            <Col>
-                <CommentsCard bug={bug}/>
-            </Col>
-        </Row>
+        <Container className='pr-4 pl-4 '>
+            <Row>
+                <Col>
+                    <BugCard bug={bug}/>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <CommentsCard bug={bug}/>
+                </Col>
+            </Row>
+        </Container>
     )
     }else{
         return(

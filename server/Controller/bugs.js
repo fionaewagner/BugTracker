@@ -47,6 +47,40 @@ export const getBugsByUser=async()=>{
 
 }
 
+export const updateBug = async (req, res) => {
+  const { _id } = req.params;
+  const {
+    name,
+    description,
+    project,
+    priority,
+    creator,
+    assigned,
+    status,
+    datePosted,
+    groupId } = req.body;
+  
+  if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send(`No bug with id: ${_id}`);
+
+  const updatedBug = {
+    name,
+    description,
+    project,
+    priority,
+    creator,
+    assigned,
+    status,
+    datePosted,
+    groupId  };
+
+  try{
+    await Bug.findByIdAndUpdate(_id, updatedBug, { new: true });
+    res.json(updatedBug);
+  }catch(err){
+    console.log(err)
+  }
+}
+
 export const createBug = async (req, res, next) => {
     console.log('creating bug')
     console.log(req.body);

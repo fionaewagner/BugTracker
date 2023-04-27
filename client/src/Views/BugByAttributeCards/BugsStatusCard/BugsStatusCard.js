@@ -11,21 +11,25 @@ const BugsStatusCard =()=>{
 
   const bugs = useSelector(selectAllBugs)
 
+  
+
 
   const open = bugs.filter((bug)=>bug.status === 'open').length 
-  const blocked = bugs.filter((bug)=>bug.priority === 'blocked').length 
-  const closed = bugs.filter((bug)=>bug.priority === 'closed').length
+  const pending = bugs.filter((bug)=>bug.status === 'pending').length 
+  const waiting = bugs.filter((bug)=>bug.status === 'waiting').length 
+  const closed = bugs.filter((bug)=>bug.status === 'closed').length
 
 const data = {
   labels: [
     'open',
-    'blocked',
+    'pending',
+    'waiting',
     'closed'
   ],
   datasets: [
     {
-      labels: ["a", "b", "c"],
-      data: [open, blocked, closed],
+      labels: ["a", "b", "c", "d"],
+      data: [open, pending, waiting, closed],
       backgroundColor: [
         'rgb(0, 38, 255)',
         'rgb(0, 141, 7)',

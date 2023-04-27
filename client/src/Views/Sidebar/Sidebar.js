@@ -18,20 +18,21 @@ import { Link, useLocation, useNavigate} from "react-router-dom";
 import './Sidebar.css'
 import Logo from '../../Images/Logo66-01.png'
 import { useSelector } from "react-redux";
-import { getName } from "../../Controllers/Redux/authSlice";
+import { getName, selectUser } from "../../Controllers/Redux/authSlice";
 import cx from 'classnames';
 
 
 
 const SideBar = ({ isOpen, toggle }) => {
   const navigate = useNavigate()
+  const user = useSelector(selectUser)
   
 
   const handleLogOff=()=>{
     sessionStorage.clear();
     navigate("../", { replace: true });
   }
-  const userName = useSelector(getName)
+  
   const location = useLocation();
   const [isAuthPage, setIsAuthPage] = useState(true)
   
@@ -62,7 +63,7 @@ const SideBar = ({ isOpen, toggle }) => {
        
         <h4>Bug Tracker</h4>
         
-        <p>Welcome, {userName}</p>
+        <p>Welcome</p>
         <NavItem>
           <NavLink tag={Link} to={"/dashboard"} className='link-name'>
             <FontAwesomeIcon icon={faChartBar} className="mr-2" />

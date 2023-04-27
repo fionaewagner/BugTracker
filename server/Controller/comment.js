@@ -56,3 +56,40 @@ export const createComment = async (req, res, next) => {
     }
 
   }
+
+  export const deleteComment = async (req, res, next) => {
+    const { _id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send(`No comment with id: ${_id}`);
+    try{
+        await Comment.findByIdAndRemove(_id);
+
+    res.json({ message: "Comment deleted successfully." });
+    }catch(err){
+       next(err)
+    }
+    
+
+}
+
+export const updateComment = async (req, res, next) => {
+    
+    const { _id } = req.params;
+    const {
+        text } = req.body;
+    
+  
+    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send(`No comment with id: ${_id}`);
+
+    const updatedComment = {
+        text  };
+
+    try{
+        console.log("we waiting boys")
+        await Comment.findByIdAndUpdate(_id, updatedComment, { new: true });
+        res.json(updateComment);
+    }
+    catch(err){
+            console.log(err.message)
+    }
+  };
