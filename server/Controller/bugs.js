@@ -131,5 +131,29 @@ export const createBug = async (req, res, next) => {
 
 }
 
+export const getBugsFiltered = async (req, res, next) => {
+  const { assigned, creator, priority, status, groupId } = req.body;
+
+  if (!groupId) {
+    return res.status(400).json({ message: "groupId is required" });
+  }
+
+  try {
+    const filters = {
+      assigned: assigned || { $exists: true },
+      creator: creator || { $exists: true },
+      priority: priority || { $exists: true },
+      status: status || { $exists: true },
+      groupId: groupId
+    };
+
+    const bugs = await BugModel.find(filters);
+
+    res.json(bugs);
+  } catch (error) {
+    next(error);
+  }
+};
+
 
 const bugRouter = express.Router

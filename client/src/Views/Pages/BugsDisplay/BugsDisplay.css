@@ -20,14 +20,8 @@
     margin: 3%;
 }
 
-.create-btn{
-    background-color: rgb(173, 173, 173) !important;
-    margin-right: 1%;
-}
 
-.add-btn{
-    font-size: large;
-}
+
 
 .bug-display-itm{
     text-decoration: none !important;
@@ -38,3 +32,18 @@
 .bug-display-itm:hover{
     color: rgb(33, 33, 33) !important;
 }
+
+.new-bug-btn{
+    color: rgb(255, 255, 255);
+    border-bottom: none;
+    text-decoration: none;
+}
+.new-bug-btn:hover{
+    color: rgb(234, 234, 234);
+    border-bottom: none;
+    text-decoration: none;
+}
+
+
+  
+  

@@ -9,7 +9,8 @@ import { selectGroupMembers } from "../../Controllers/Redux/authSlice"
 import './BugCard.css'
 import { updateBug } from "../../actions/bugs"
 import{
-    faPen
+    faPen,
+    faFloppyDisk
   
   }from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -50,6 +51,7 @@ const BugCard = ({bug})=>{
 
     const handleSubmit=(values)=>{
         const updatedBug = {
+            name: displayName,
             description: values.description,
             project: values.project,
             priority: values.priority.toLowerCase(),
@@ -155,7 +157,10 @@ const BugCard = ({bug})=>{
                     </Row>
                     <Row className="text-center">
                         <Col>
-                            <Button type="submit">Save Bug</Button>
+                            <Button type="submit">
+                                <FontAwesomeIcon icon={faFloppyDisk}/>
+                                {"  "}Save Bug
+                            </Button>
                         </Col>
                         
                     </Row>

@@ -9,7 +9,8 @@ import {
   
 } from "@fortawesome/free-regular-svg-icons";
 import{
-  faGroupArrowsRotate
+  faGroupArrowsRotate,
+  faBug
 
 }from "@fortawesome/free-solid-svg-icons"
 import { NavItem, NavLink, Nav, NavbarBrand, Button } from "reactstrap";
@@ -73,7 +74,7 @@ const SideBar = ({ isOpen, toggle }) => {
         
         <NavItem>
           <NavLink tag={Link} to={"/bugs"} className='link-name'>
-            <FontAwesomeIcon icon={faRectangleList} className="mr-2" />
+            <FontAwesomeIcon icon={faBug} className="mr-2" />
             {'  '}Bugs
           </NavLink>
         </NavItem>

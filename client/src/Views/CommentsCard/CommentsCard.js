@@ -6,10 +6,12 @@ import { selectLoading } from "../../Controllers/Redux/loadingSlice"
 import{
     faTrash,
     faPen, 
-    faCheck
+    faCheck,
+    faPlusCircle
   }from "@fortawesome/free-solid-svg-icons"
 import Loading from "../Loading/Loading"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import './CommentsCard.css'
 
 
 const CommentsCard=({bug})=>{
@@ -27,21 +29,31 @@ const CommentsCard=({bug})=>{
 
     }else{
     return(
-        <>
-        <h4 className="mt-4">Add a Comment</h4>
-        <input onChange={(event)=>setComment(event.target.value)} type="text"/>
-        <button onClick={()=>{
-            const newComment = {text: comment, creator: sessionStorage.getItem("userId")}
-            createComment(newComment, bug._id)
-            setComments([...comments, {...newComment, creator: sessionStorage.getItem("username")}])}}>Add</button>
-            <Card>
+        <div>
+        
+            <Card className="comment-card">
                 <div className="card-body">
                     <div className="bug-card-ttl text-center p-2">
                         <h4>Comments</h4>
                     </div>
-                    <Row className="card-row">
-                        <Col>
-                            <p className="title">Comment</p> 
+                    <Row>
+                        <Col xs='6'>
+                            <input className="comment-input" onChange={(event)=>setComment(event.target.value)} type="text"/>
+                        </Col>
+                        <Col >
+                        <Button onClick={()=>{
+                                const newComment = {text: comment, creator: sessionStorage.getItem("userId")}
+                                createComment(newComment, bug._id)
+                                setComments([...comments, {...newComment, creator: sessionStorage.getItem("username")}])}}>
+                                    <FontAwesomeIcon icon={faPlusCircle}/>
+                                    {"  "}Add Comment
+                                    </Button>
+                        </Col>
+                        
+                    </Row>
+                    <Row className="comment-title-row">
+                        <Col >
+                            <p >Comment</p> 
                         </Col>
                         <Col>
                             <p className="title">Posted By</p>
@@ -97,7 +109,7 @@ const CommentsCard=({bug})=>{
                 </div>
 
         </Card>
-       </>
+       </div>
     )}
     
 
