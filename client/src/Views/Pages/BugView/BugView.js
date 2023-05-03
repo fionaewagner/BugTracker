@@ -24,13 +24,13 @@ const BugView=()=>{
     if(!loading){
 
     return(
-        <Container className='pr-4 pl-4 '>
+        <Container className='pr-4 pl-4 mt-3'>
             <Row>
                 <Col>
                     <BugCard bug={bug}/>
                 </Col>
             </Row>
-            <Row>
+            <Row className='mt-4'>
                 <Col>
                     <CommentsCard bug={bug}/>
                 </Col>

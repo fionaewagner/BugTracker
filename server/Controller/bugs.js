@@ -132,7 +132,10 @@ export const createBug = async (req, res, next) => {
 }
 
 export const getBugsFiltered = async (req, res, next) => {
-  const { assigned, creator, priority, status, groupId } = req.body;
+  const {filters} = req.body
+  const { assigned, creator, priority, status, groupId } = filters;
+
+  console.log(assigned)
 
   if (!groupId) {
     return res.status(400).json({ message: "groupId is required" });
@@ -147,10 +150,11 @@ export const getBugsFiltered = async (req, res, next) => {
       groupId: groupId
     };
 
-    const bugs = await BugModel.find(filters);
+    const bugs = await Bug.find(filters);
 
     res.json(bugs);
   } catch (error) {
+    console.log(error)
     next(error);
   }
 };

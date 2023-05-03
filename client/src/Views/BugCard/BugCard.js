@@ -145,7 +145,7 @@ const BugCard = ({bug})=>{
                                 </Field>
                             </Col>
                         </Row>
-                    <Row> 
+                    <Row className="mt-4"> 
                         <Col>
                             <b className="title">Bug Details</b>
                         </Col>

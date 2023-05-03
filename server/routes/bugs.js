@@ -5,7 +5,7 @@ import { createBug, deleteBug, getBugById, getBugs, getBugsFiltered, updateBug }
 export const bugsRouter = express.Router()
 
 bugsRouter.route("/").get(getBugs);
-bugsRouter.route("/filter").get(getBugsFiltered);
+bugsRouter.route("/filter").post(getBugsFiltered);
 bugsRouter.route("/group").get(getBugs);
 bugsRouter.route("/create").post(createBug);
 bugsRouter.delete('/:_id',deleteBug);

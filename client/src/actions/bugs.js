@@ -42,9 +42,7 @@ export const getBugs=async(dispatch)=>{
       const user = await getUser(sessionStorage.getItem("userId"), dispatch) 
       if(user){
         const groupId = user.groupId
-        console.log("groupId is: " + groupId)
         const bugs = await axios.get(`${url}/group`, {groupId})
-        console.log("the response was: " + bugs.data)
         dispatch(setBugs(bugs.data))
         dispatch(setLoading(false))
         return bugs;
@@ -52,7 +50,6 @@ export const getBugs=async(dispatch)=>{
 
     }catch(err){
       console.log(err.message)
-
     }
   }
 
@@ -107,4 +104,25 @@ export const getBugs=async(dispatch)=>{
     } catch (error) {
       console.log(error.message);
     }
+  }
+
+  export const getTicketsFiltered=async(dispatch, filters)=>{
+    dispatch(setLoading(true))
+    try{
+        const user = await getUser(sessionStorage.getItem("userId"), dispatch) 
+      if(user){
+        const groupId = user.groupId
+        console.log(filters)
+        filters.groupId = groupId
+        const bugs = await axios.post(`${url}/filter`, {filters})
+        console.log("returned bugs: " + bugs)
+        dispatch(setBugs(bugs.data))
+        dispatch(setLoading(false))
+        return bugs;
+      }
+
+    }catch(err){
+      console.log(err.message)
+    }
+
   }

@@ -13,7 +13,7 @@ import {
     faMagnifyingGlass
     
   } from "@fortawesome/free-solid-svg-icons";
-import { getBugsForUserGroup } from '../../../actions/bugs';
+import { getBugsForUserGroup, getTicketsFiltered } from '../../../actions/bugs';
 import { getUser } from '../../../actions/auth';
 import { selectGroupMembers } from '../../../Controllers/Redux/authSlice';
 import { Form, Formik, Field } from 'formik';
@@ -51,6 +51,18 @@ const BugsDisplay=({sidebarIsOpen})=>{
         getBugsForUserGroup(dispatch)
     },[])
 
+    const handleSubmit=(values)=>{
+        const {assigned, creator, priority, status} = values
+        console.log(values)
+        const filters = {
+            assigned,
+            creator,
+            priority,
+            status
+        }
+        getTicketsFiltered(dispatch, filters)
+    }
+
     if(loading || !gpMembers){
         return(
             <Loading/>
@@ -75,20 +87,23 @@ const BugsDisplay=({sidebarIsOpen})=>{
                     name='name' id='name'/>             
                 </Col>
                 <Col>
-                <Dropdown isOpen={isOpen} toggle={toggle} className='mt-4'>
-                    <DropdownToggle caret>Filters...</DropdownToggle>
+                <Dropdown isOpen={isOpen} className='mt-4'>
+                    <DropdownToggle caret toggle={()=>console.log("toggled")} onClick={toggle}>Filters...</DropdownToggle>
                     <DropdownMenu>
                         <Formik
                         initialValues={{
                             assigned:"",
-                            creator:""
-                        }}>
+                            creator:"",
+                            status:"",
+                            priority:""
+                        }}
+                        onSubmit={handleSubmit}>
                             <Form>
                                 <DropdownItem header>
                                     Assigned to...
                                 </DropdownItem>
                                 <DropdownItem>
-                                <Field onClick={stopPropagation} as='select' id='assigned' name='assigned'>
+                                <Field  as='select' id='assigned' name='assigned'>
                                     <option value="">Select a member...</option>
                                     {gpMembers.map(member => (
                                         <option key={member._id} value={member._id} >
@@ -100,8 +115,9 @@ const BugsDisplay=({sidebarIsOpen})=>{
                                 <DropdownItem header>
                                     Priority...
                                 </DropdownItem>
-                                <DropdownItem onClick={() => console.log('Action 1 clicked')}>
-                                <Field onClick={stopPropagation} as='select' id='priority' name='priority'>
+                                <DropdownItem >
+                                <Field  as='select' id='priority' name='priority'>
+                                    <option value="">Select Priority...</option>
                                     <option value="low">Low</option>
                                     <option value="mid">Mid</option>
                                     <option value="urgent">Urgent</option>
@@ -111,8 +127,9 @@ const BugsDisplay=({sidebarIsOpen})=>{
                                 <DropdownItem header>
                                     Status...
                                 </DropdownItem>
-                                <DropdownItem onClick={() => console.log('Action 2 clicked')}>
-                                    <Field onClick={stopPropagation} as='select' id='status' name='status'>
+                                <DropdownItem >
+                                    <Field  as='select' id='status' name='status'>
+                                        <option value="open">Select status...</option>
                                         <option value="open">Open</option>
                                         <option value="pending">Pending</option>
                                         <option value="waiting">Waiting on 3rd Party</option>
@@ -122,8 +139,8 @@ const BugsDisplay=({sidebarIsOpen})=>{
                                 <DropdownItem header>
                                     Created by...
                                 </DropdownItem>
-                                <DropdownItem onClick={() => console.log('Action 2 clicked')}>
-                                    <Field onClick={stopPropagation} as='select' id='creator' name='creator'>
+                                <DropdownItem>
+                                    <Field as='select' id='creator' name='creator'>
                                         <option value="">Select a member...</option>
                                         {gpMembers.map(member => (
                                             <option key={member._id} value={member._id} >
@@ -133,7 +150,7 @@ const BugsDisplay=({sidebarIsOpen})=>{
                                     </Field>
                                 </DropdownItem>
                                 <DropdownItem divider />
-                                <DropdownItem onClick={() => console.log('Action 3 clicked')}>
+                                <DropdownItem>
                                     <Button type='submit'>Apply Filters</Button>
                                 </DropdownItem>
                             </Form>
@@ -177,30 +194,10 @@ const BugsDisplay=({sidebarIsOpen})=>{
             </Col>
             </Row>
             </div>
-            
     )
-                    }
+    }
 
 }
 
-/**
- * <Dropdown isOpen={isOpen} toggle={toggleDropdown} className="my-dropdown" >
-                    <DropdownToggle caret>
-                        {selectedOption || 'Select an option'}
-                    </DropdownToggle>
-                    <DropdownMenu className={`${isOpen ? 'show ' : ''}${closingClass}`}>
-                        <DropdownItem onClick={() => handleOptionSelect('Option 1')}>
-                        Option 1
-                        </DropdownItem>
-                        <DropdownItem onClick={() => handleOptionSelect('Option 2')}>
-                        Option 2
-                        </DropdownItem>
-                        <DropdownItem onClick={() => handleOptionSelect('Option 3')}>
-                        Option 3
-                        </DropdownItem>
-                    </DropdownMenu>
-                    </Dropdown>
- * 
- */
 
 export default BugsDisplay
