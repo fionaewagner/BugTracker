@@ -25,9 +25,7 @@
   /* ---------------------------------------------------
       CONTENT STYLE
   ----------------------------------------------------- */
-  .content {
-    
-  }
+
   
   @media only screen and (max-width: 500px) {
     body {
@@ -58,11 +56,6 @@
 
   .content-col{
     transition: .4s;
-}
-
-.content-col-is-open{
-    transition: .4s;
-    transform: translate(-120px,0px);
 }
 
 .add-underline{

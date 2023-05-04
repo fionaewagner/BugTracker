@@ -6,6 +6,7 @@ import Header from "../../Header/Header"
 import { getBugsForUserGroup } from "../../../actions/bugs"
 import { useDispatch } from "react-redux"
 import { useEffect } from "react"
+import './Dashboard.css'
 
 
 
@@ -23,8 +24,9 @@ const Dashboard = ({sidebarIsOpen})=>{
    
     return(
         <div>
-            <Header name={"Dashboard"} sidebarIsOpen={sidebarIsOpen}/>
-            <Row className="mb-3">
+            <Header name={"Dashboard"} sidebarIsOpen={sidebarIsOpen} />
+            <div>
+            <Row className="dash-content mb-3">
                 <Col/>
                 <Col xs='10' md='5' >
                     <TotalBugsCard/>
@@ -42,6 +44,7 @@ const Dashboard = ({sidebarIsOpen})=>{
                 <Col/>
                 
             </Row>
+            </div>
         </div>
     )
     }

@@ -2,11 +2,16 @@
     background: linear-gradient(to left, rgb(0, 56, 178),rgb(87, 206, 249) );
     padding: 1%;
     margin-bottom: 2%;
+    width: 100vw;
+    height: 70px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    margin-left: 0 !important;
+
 }
 
-.dash-header-closed{
-    background: linear-gradient(to left, rgb(0, 56, 178),rgb(87, 206, 249) );
-}
 .header-title{
     text-align: center;
 }
