@@ -1,3 +1,11 @@
 .dash-content{
     padding-top: 75px;
 }
+.dashboard-open{
+    margin-left: 0;
+    transition: margin 0.4s 
+}
+.dashboard-closed{
+    margin-left: 20% ;
+    transition: margin 0.4s
+}

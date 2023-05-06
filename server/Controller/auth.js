@@ -224,4 +224,21 @@ export const updateUser = async (req, res) => {
     
   }
 
+export const setAdmin=async(req,res)=>{
+    const userId = '641dc228e125709e985aa359'
+    const updatedUser = {admin:true};
+    
+
+        try{
+            await User.findByIdAndUpdate(userId, updatedUser, { new: true });
+  
+            res.json(updatedUser);
+        }catch(err){
+            res.status(500).json({
+                success:false,
+                error: err.message
+            })
+        }
+}
+
 

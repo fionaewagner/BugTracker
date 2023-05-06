@@ -44,6 +44,15 @@
     text-decoration: none;
 }
 
+.bugs-display{
+    margin-left: 0;
+    transition: margin 0.4s 
+}
+.bugs-display-open{
+    margin-left: 20%;
+    transition: margin 0.4s
+}
+
 
   
   

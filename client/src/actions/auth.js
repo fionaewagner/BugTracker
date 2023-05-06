@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { registerUser, setName, setUser, setUserGroupMembers } from '../Controllers/Redux/authSlice';
+import { registerUser, setName, setUser, setUserGroupMembers, signIn } from '../Controllers/Redux/authSlice';
 import { setLoading } from '../Controllers/Redux/loadingSlice';
 import { joinGroup, registerGroup } from './group';
 
@@ -81,9 +81,10 @@ export const userRegister=async(user, navigate, dispatch)=>{
       sessionStorage.setItem("authToken", data.token);
       sessionStorage.setItem("userId", data._id)
       sessionStorage.setItem("username", data.username)
-      navigate("../dashboard", { replace: true });
       dispatch(setUser(email))
       dispatch(setName(username))
+      dispatch(signIn())
+      navigate("../dashboard", { replace: true });
       }
       else{
         console.log("Invalid Credentials")
@@ -116,6 +117,7 @@ export const login=async(user, navigate, dispatch)=>{
     sessionStorage.setItem("userId", data._id)
     dispatch(setUser(email))
     dispatch(setName(data.username))
+    dispatch(signIn())
     navigate("../dashboard", { replace: true });
 
   } catch (error) {

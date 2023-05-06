@@ -55,11 +55,8 @@ input.reg-field{
 }
 .auth-page{
     background: linear-gradient(to left, rgb(255, 119, 0),rgb(255, 150, 13) , rgb(255, 184, 91) );
-    border-radius: 20px;
-    padding-left: 2%;
-    padding-right: 2%;
-    padding-bottom: 7%;
-    padding-top: 2%;
+    height: 100vh;
+    margin: 0;
 }
 
 
@@ -73,9 +70,6 @@ input.reg-field{
     color: rgb(191, 191, 191);
 }
 
-html{
-    height:  100%;
-}
 
 .label-row{
     margin-bottom: -5% ;

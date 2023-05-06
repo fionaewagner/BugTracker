@@ -13,21 +13,29 @@ import {
     faMagnifyingGlass
     
   } from "@fortawesome/free-solid-svg-icons";
-import { getBugsForUserGroup, getTicketsFiltered } from '../../../actions/bugs';
+import { deleteBug, getBugsForUserGroup, getTicketsFiltered } from '../../../actions/bugs';
 import { getUser } from '../../../actions/auth';
-import { selectGroupMembers } from '../../../Controllers/Redux/authSlice';
+import { selectGroupMembers, selectUser } from '../../../Controllers/Redux/authSlice';
 import { Form, Formik, Field } from 'formik';
 import { selectLoading } from '../../../Controllers/Redux/loadingSlice';
+import Modal from '../../Modal/Modal';
 import Loading from '../../Loading/Loading';
 
 
 const BugsDisplay=({sidebarIsOpen})=>{
     const dispatch = useDispatch()
     const bugs = useSelector(selectAllBugs)
+    const user = useSelector(selectUser)
     const [closingClass, setClosingClass] = useState("open")
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState(null);
     const gpMembers = useSelector(selectGroupMembers)
+    const [marginLeft, setMarginLeft] = useState("0%");
+    const [bugDelete, setBugDelete] = useState({})
+
+    const [modalOpen, setModalOpen] = useState(false);
+    const title = `Are you sure you want to delete bug '${bugDelete.name}'?`
+    const text = "Doing so will remove this bug permanently."
 
     const loading = useSelector(selectLoading)
 
@@ -70,7 +78,7 @@ const BugsDisplay=({sidebarIsOpen})=>{
     }else{
     
     return(
-        <div className='bugs-display'>
+        <div className={!sidebarIsOpen ? 'bugs-display' : 'bugs-display-open'}>
             <Row>
                 <Col xs='11'>
             <Card className='bugs-card'>
@@ -179,20 +187,42 @@ const BugsDisplay=({sidebarIsOpen})=>{
                 {bugs.map((bug)=>{
                     console.log(bug)
                     return(
-                    <Link to={`${bug._id}`} className='bug-display-itm'>
                         <Row className='bug-row'>
-                            <Col xs='3' >
-                            {bug.name ? bug.name : "Untitled"}
-                            </Col>
                             <Col>
-                            {bug.description ? bug.description : "No description available"}
+                            <Link to={`${bug._id}`} className='bug-display-itm'>
+                                <Row >
+                                    <Col xs='3' >
+                                    {bug.name ? bug.name : "Untitled"}
+                                    </Col>
+                                    <Col>
+                                    {bug.description ? bug.description : "No description available"}
+                                    </Col>
+                                    
+                                </Row>
+                            </Link>
+                            
+                            </Col>
+                            <Col xs='1'>
+                                {
+                                        user.admin && 
+                                    
+                                    <Button onClick={()=>{
+                                        setBugDelete(bug)
+                                        setModalOpen(true)
+                                    }}>
+                                        <FontAwesomeIcon icon={faTrash}/>
+                                    </Button>
+                                }
                             </Col>
                         </Row>
-                    </Link>)})}
+                    )})}
             </div>
             </Card>
             </Col>
             </Row>
+            {modalOpen && <Modal 
+            setOpenModal={setModalOpen} sidebarIsOpen={sidebarIsOpen}
+            title={title} text={text} onModalCont={()=>deleteBug(bugDelete._id)}/>}
             </div>
     )
     }

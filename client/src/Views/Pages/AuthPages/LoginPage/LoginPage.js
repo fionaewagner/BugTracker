@@ -33,7 +33,7 @@ const LoginPage=()=>{
 
 }
     return(
-        <Container className="auth-page">
+        <div className="auth-page">
             <div className='auth-title'>
                 <h1 className="bug-title">Bug Tracker</h1>
                 <p>Login</p>
@@ -94,7 +94,7 @@ const LoginPage=()=>{
                 
                 <Col/>
             </Row>    
-        </Container>
+        </div>
     )
 }
 

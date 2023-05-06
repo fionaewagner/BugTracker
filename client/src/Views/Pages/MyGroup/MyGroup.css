@@ -6,9 +6,17 @@
    padding: 10px;
 }
 
-.group-card-div{
+.group-card-div-opn{
     padding-top: 75px;
-    margin: 1%;
+    margin-top: 1%;
+    transition: margin .4s;
+    align-items: center;
+}
+.group-card-div-closed{
+    padding-top: 75px;
+    margin-top: 1%;
+    margin-left: 20%;
+    transition: margin .4s;
     align-items: center;
 }
 

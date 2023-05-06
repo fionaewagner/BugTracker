@@ -41,7 +41,7 @@ const MyGroup =({sidebarIsOpen})=>{
     return(
         <div>
             <Header name={"My Group"} sidebarIsOpen={sidebarIsOpen}/>
-            <Card className="group-card-div">
+            <Card className={sidebarIsOpen ? 'group-card-div-closed' : 'group-card-div-opn'}>
             <Formik
                     initialValues={{name:'',key:'',}}
                     onSubmit={handleJoin}

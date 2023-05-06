@@ -57,6 +57,6 @@ export const getUser=(state)=>{
     return state.auth.email
 }
 
-export const getName=(state)=>{
-    return state.auth.username
+export const selectLogIn=(state)=>{
+    return state.auth.loggedIn
 }

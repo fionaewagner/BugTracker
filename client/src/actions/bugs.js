@@ -126,3 +126,12 @@ export const getBugs=async(dispatch)=>{
     }
 
   }
+
+  export const deleteBug=async(_id)=>{
+    console.log("bug id is: " + _id)
+    try{
+      axios.delete(`${url}/${_id}`)
+    }catch(error){
+      console.log(error);
+    }
+}
