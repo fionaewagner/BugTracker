@@ -7,6 +7,7 @@ import { getBugsForUserGroup } from "../../../actions/bugs"
 import { useDispatch } from "react-redux"
 import { useEffect } from "react"
 import './Dashboard.css'
+import { signIn } from "../../../Controllers/Redux/authSlice"
 
 
 
@@ -18,6 +19,7 @@ const Dashboard = ({sidebarIsOpen})=>{
 
     useEffect(()=>{
         getBugsForUserGroup(dispatch)
+        dispatch(signIn())
     },[])
 
     if(token){

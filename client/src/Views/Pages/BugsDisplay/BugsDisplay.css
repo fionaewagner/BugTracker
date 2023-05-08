@@ -20,9 +20,6 @@
     margin: 3%;
 }
 
-
-
-
 .bug-display-itm{
     text-decoration: none !important;
     color: black;
@@ -37,6 +34,9 @@
     color: rgb(255, 255, 255);
     border-bottom: none;
     text-decoration: none;
+}
+.new-bug-col{
+    margin-left: 12px;
 }
 .new-bug-btn:hover{
     color: rgb(234, 234, 234);

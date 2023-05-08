@@ -15,7 +15,7 @@ import {
   } from "@fortawesome/free-solid-svg-icons";
 import { deleteBug, getBugsForUserGroup, getTicketsFiltered } from '../../../actions/bugs';
 import { getUser } from '../../../actions/auth';
-import { selectGroupMembers, selectUser } from '../../../Controllers/Redux/authSlice';
+import { selectGroupMembers, selectUser, signIn } from '../../../Controllers/Redux/authSlice';
 import { Form, Formik, Field } from 'formik';
 import { selectLoading } from '../../../Controllers/Redux/loadingSlice';
 import Modal from '../../Modal/Modal';
@@ -55,6 +55,7 @@ const BugsDisplay=({sidebarIsOpen})=>{
   };
 
     useEffect(()=>{
+        dispatch(signIn())
         getUser(sessionStorage.getItem("userId"), dispatch)
         getBugsForUserGroup(dispatch)
     },[])
@@ -84,7 +85,7 @@ const BugsDisplay=({sidebarIsOpen})=>{
             <Card className='bugs-card'>
             <Row>
                 <Col xs='10' className='card-title '>
-                    <h3>Your Bugs</h3>
+                    <h3>Bugs for Your Group</h3>
                 </Col>
             </Row>
             <Row className='mb-4'>
@@ -94,61 +95,24 @@ const BugsDisplay=({sidebarIsOpen})=>{
                     <input id='name' className='yum pt-1 pb-1' type='text' placeholder='Search all bugs...'
                     name='name' id='name'/>             
                 </Col>
-                <Col>
-                <Dropdown isOpen={isOpen} className='mt-4'>
-                    <DropdownToggle caret toggle={()=>console.log("toggled")} onClick={toggle}>Filters...</DropdownToggle>
-                    <DropdownMenu>
-                        <Formik
-                        initialValues={{
-                            assigned:"",
-                            creator:"",
-                            status:"",
-                            priority:""
-                        }}
-                        onSubmit={handleSubmit}>
-                            <Form>
-                                <DropdownItem header>
-                                    Assigned to...
-                                </DropdownItem>
-                                <DropdownItem>
-                                <Field  as='select' id='assigned' name='assigned'>
-                                    <option value="">Select a member...</option>
-                                    {gpMembers.map(member => (
-                                        <option key={member._id} value={member._id} >
-                                            {member.username}
-                                        </option>
-                                    ))}
-                                </Field>
-                                </DropdownItem>
-                                <DropdownItem header>
-                                    Priority...
-                                </DropdownItem>
-                                <DropdownItem >
-                                <Field  as='select' id='priority' name='priority'>
-                                    <option value="">Select Priority...</option>
-                                    <option value="low">Low</option>
-                                    <option value="mid">Mid</option>
-                                    <option value="urgent">Urgent</option>
-                                    <option value="high">High</option>
-                                </Field>
-                                </DropdownItem>
-                                <DropdownItem header>
-                                    Status...
-                                </DropdownItem>
-                                <DropdownItem >
-                                    <Field  as='select' id='status' name='status'>
-                                        <option value="open">Select status...</option>
-                                        <option value="open">Open</option>
-                                        <option value="pending">Pending</option>
-                                        <option value="waiting">Waiting on 3rd Party</option>
-                                        <option value="closed">Closed</option>
-                                    </Field>
-                                </DropdownItem>
-                                <DropdownItem header>
-                                    Created by...
-                                </DropdownItem>
-                                <DropdownItem>
-                                    <Field as='select' id='creator' name='creator'>
+                <Col xs='1'>
+                    <Dropdown isOpen={isOpen} className='mt-4'>
+                        <DropdownToggle caret toggle={()=>console.log("toggled")} onClick={toggle}>Filters...</DropdownToggle>
+                        <DropdownMenu>
+                            <Formik
+                            initialValues={{
+                                assigned:"",
+                                creator:"",
+                                status:"",
+                                priority:""
+                            }}
+                            onSubmit={handleSubmit}>
+                                <Form>
+                                    <DropdownItem header>
+                                        Assigned to...
+                                    </DropdownItem>
+                                    <DropdownItem>
+                                    <Field  as='select' id='assigned' name='assigned'>
                                         <option value="">Select a member...</option>
                                         {gpMembers.map(member => (
                                             <option key={member._id} value={member._id} >
@@ -156,17 +120,54 @@ const BugsDisplay=({sidebarIsOpen})=>{
                                             </option>
                                         ))}
                                     </Field>
-                                </DropdownItem>
-                                <DropdownItem divider />
-                                <DropdownItem>
-                                    <Button type='submit'>Apply Filters</Button>
-                                </DropdownItem>
-                            </Form>
-                        </Formik>
-                    </DropdownMenu>
-                    </Dropdown>
+                                    </DropdownItem>
+                                    <DropdownItem header>
+                                        Priority...
+                                    </DropdownItem>
+                                    <DropdownItem >
+                                    <Field  as='select' id='priority' name='priority'>
+                                        <option value="">Select Priority...</option>
+                                        <option value="low">Low</option>
+                                        <option value="mid">Mid</option>
+                                        <option value="urgent">Urgent</option>
+                                        <option value="high">High</option>
+                                    </Field>
+                                    </DropdownItem>
+                                    <DropdownItem header>
+                                        Status...
+                                    </DropdownItem>
+                                    <DropdownItem >
+                                        <Field  as='select' id='status' name='status'>
+                                            <option value="open">Select status...</option>
+                                            <option value="open">Open</option>
+                                            <option value="pending">Pending</option>
+                                            <option value="waiting">Waiting on 3rd Party</option>
+                                            <option value="closed">Closed</option>
+                                        </Field>
+                                    </DropdownItem>
+                                    <DropdownItem header>
+                                        Created by...
+                                    </DropdownItem>
+                                    <DropdownItem>
+                                        <Field as='select' id='creator' name='creator'>
+                                            <option value="">Select a member...</option>
+                                            {gpMembers.map(member => (
+                                                <option key={member._id} value={member._id} >
+                                                    {member.username}
+                                                </option>
+                                            ))}
+                                        </Field>
+                                    </DropdownItem>
+                                    <DropdownItem divider />
+                                    <DropdownItem>
+                                        <Button type='submit'>Apply Filters</Button>
+                                    </DropdownItem>
+                                </Form>
+                            </Formik>
+                        </DropdownMenu>
+                        </Dropdown>
                 </Col>
-                <Col xs='2' className='new-bug-btn mt-4'>
+                <Col xs='4' className='new-bug-btn new-bug-col mt-4'>
                     <Button>
                         <Link to='/create' className='new-bug-btn'>
                             <FontAwesomeIcon icon={faPlus}/>{"  "}New Bug

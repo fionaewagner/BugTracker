@@ -12,6 +12,7 @@ import LoginPage from "./Views/Pages/AuthPages/LoginPage/LoginPage";
 import MyGroup from "./Views/Pages/MyGroup/MyGroup";
 import RoleRegister from "./Views/Pages/AuthPages/RoleRegister/RoleRegister";
 import AdminRegisterPage from "./Views/Pages/AuthPages/AdminRegisterPage/AdminRegisterPage";
+import Admin from "./Views/Pages/Admin/Admin";
 
 
 const Content = ({ sidebarIsOpen, toggleSidebar, setSidebarOpen}) => {
@@ -34,10 +35,11 @@ const Content = ({ sidebarIsOpen, toggleSidebar, setSidebarOpen}) => {
       <Route exact path="/dashboard" element={token ? <Dashboard sidebarIsOpen={sidebarIsOpen}/> : <Navigate to="/" />} />
       <Route exact path="/bugs" element={token ? <BugsDisplay sidebarIsOpen={sidebarIsOpen}/> : <Navigate to="/" />} />
       <Route exact path='/groups' element={token ? <MyGroup sidebarIsOpen={sidebarIsOpen}/> : <Navigate to="/" />}/>
+      <Route path="/admin" element={token ? <Admin sidebarIsOpen={sidebarIsOpen}/> : <Navigate to="/" />} />
       <Route exact path="/Pages" element={() => "Pages"} />
       <Route exact path="/user" element={token ? <UserSettings/> :<Navigate to="/" />} />
       <Route exact path="/create" element={token ? <CreateBug/> : <Navigate to="/" />} />
-      <Route path="bugs/:bugId" element={token ? <BugView/> : <Navigate to="/" />} />
+      <Route path="bugs/:bugId" element={token ? <BugView sidebarIsOpen={sidebarIsOpen}/> : <Navigate to="/" />} />
     </Routes>
   </Container>
 )};

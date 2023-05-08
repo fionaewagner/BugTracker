@@ -30,6 +30,7 @@
   
   .sidebar-header {
     background: #ffffff;
+    align-items: center;
   }
   
   .sidebar-header h3 {

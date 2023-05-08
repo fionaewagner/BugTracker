@@ -82,9 +82,6 @@ const LoginPage=()=>{
                     <Row>
                         <Col/>
                         <Col xs='5'>
-                            <p>Forgot Password?</p>
-                        </Col>
-                        <Col xs='5'>
                             <Link className="rmv-dec" to='/register'>Create an Account</Link>
                         </Col>
                         <Col/>

@@ -1,0 +1,8 @@
+.bug-view-closed{
+    margin-left: 12%;
+    transition: margin .4s;
+}
+
+.bug-view-open{
+    transition: margin .4s;
+}

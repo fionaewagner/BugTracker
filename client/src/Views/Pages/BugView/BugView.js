@@ -10,7 +10,7 @@ import { getBug } from '../../../actions/bugs';
 import Loading from '../../Loading/Loading';
 import { selectLoading } from '../../../Controllers/Redux/loadingSlice';
 
-const BugView=()=>{
+const BugView=({sidebarIsOpen})=>{
     const {bugId} = useParams();
     const dispatch = useDispatch();
     const bug = useSelector(selectBug)
@@ -25,16 +25,18 @@ const BugView=()=>{
 
     return(
         <Container className='pr-4 pl-4 mt-3'>
-            <Row>
-                <Col>
-                    <BugCard bug={bug}/>
-                </Col>
-            </Row>
-            <Row className='mt-4'>
-                <Col>
-                    <CommentsCard bug={bug}/>
-                </Col>
-            </Row>
+            <div className={sidebarIsOpen ? 'bug-view-closed' : 'bug-view-open'}>
+                <Row>
+                    <Col>
+                        <BugCard bug={bug}/>
+                    </Col>
+                </Row>
+                <Row className='mt-4'>
+                    <Col>
+                        <CommentsCard bug={bug}/>
+                    </Col>
+                </Row>
+             </div>
         </Container>
     )
     }else{

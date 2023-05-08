@@ -197,7 +197,13 @@ export const resetPassword= async(req, res, next)=>{
 
 const sendToken=(user, statusCode,res)=>{
     const token = user.getSignedToken();
-    res.status(statusCode).json({success:true,token, _id: user._id, username: user.username})
+    res.status(statusCode).json({
+        success:true,
+        token, 
+        _id: user._id, 
+        username: user.username,
+        admin: user.admin
+    })
 
 }
 
@@ -224,7 +230,7 @@ export const updateUser = async (req, res) => {
     
   }
 
-export const setAdmin=async(req,res)=>{
+/**export const setAdmin=async(req,res)=>{
     const userId = '641dc228e125709e985aa359'
     const updatedUser = {admin:true};
     
@@ -239,6 +245,6 @@ export const setAdmin=async(req,res)=>{
                 error: err.message
             })
         }
-}
+}**/
 
 

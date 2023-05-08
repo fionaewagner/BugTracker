@@ -81,6 +81,9 @@ export const userRegister=async(user, navigate, dispatch)=>{
       sessionStorage.setItem("authToken", data.token);
       sessionStorage.setItem("userId", data._id)
       sessionStorage.setItem("username", data.username)
+      if(admin){
+        sessionStorage.setItem("admin", true)
+      }
       dispatch(setUser(email))
       dispatch(setName(username))
       dispatch(signIn())
@@ -115,6 +118,8 @@ export const login=async(user, navigate, dispatch)=>{
 
     sessionStorage.setItem("authToken", data.token);
     sessionStorage.setItem("userId", data._id)
+    sessionStorage.setItem("username", data.username)
+    sessionStorage.setItem("admin", data.admin)
     dispatch(setUser(email))
     dispatch(setName(data.username))
     dispatch(signIn())
